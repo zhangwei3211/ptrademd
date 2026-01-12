@@ -1,0 +1,160 @@
+"""
+策略名称：
+期货日内交易策略
+运行周期:
+分钟
+策略流程：
+盘中每隔5分钟进行一次RSI短周期与长周期多空共振的判断，决定做开多头仓还是空头仓；
+盘中再按照盈利比例进行头寸平仓或者收盘前清算头寸平仓
+==============================================================================
+备注：该demo仅支持回测场景使用，如在交易场景使用，需要将主力合约代码，如"IF888.CCFX"
+替换为当前交易日正处理上市状态的合约代码
+"""
+# 导入函数库
+import numpy as np
+
+
+# 初始化此策略
+def initialize(context):
+    # 设置我们要操作的股票池, 这里我们只操作一支股票
+    g.ini_buy_flag = False  # 买底仓开关
+    g.amount = 1  # 1份标准交易头寸
+    g.rate = 0.5  # 做T涨跌幅，1就是1%
+    g.L = 50  # 长周期RSI阈值
+    g.S = 80  # 短周期RSI阈值
+    g.target = 'IF'  # 设置交易标的
+    g.security = g.target + '888.CCFX'  # 设置主力合约
+    log.info(g.security)
+    if not is_trade():
+        set_limit_mode('UNLIMITED')
+        set_margin_rate(g.target, 0.15)
+
+
+# 盘前处理
+def before_trading_start(context, data):
+    g.count = 0
+    g.B_T_flag = False  # 做正T开关（先买后卖）
+    g.S_T_flag = False  # 做反T开关（先卖后买）
+    g.first_buy_flag = False
+    g.second_buy_flag = False
+    g.trade_flag = True
+
+
+# 盘中处理
+def handle_data(context, data):
+    g.count += 1
+    k_num = g.count
+    if k_num <= 5:
+        return
+    # 每个5分钟整点进行做T判断
+    if k_num % 1 == 0:
+        # 获取5分钟K线数据
+        h = get_history(100, '1m', field=['close', 'volume'], security_list=g.security,
+                        fq=None, include=True, is_dict=True)
+        close_array_m = h[g.security]['close']
+        # 获取5分钟K线数据
+        h = get_history(100, '5m', field=['close', 'volume'], security_list=g.security,
+                        fq=None, include=True, is_dict=True)
+        close_array_5m = h[g.security]['close']
+
+        if close_array_m.ndim != 0 and close_array_5m.ndim != 0:
+            # 获取5分钟、15分钟RSI
+            rsi_m = get_rsi(close_array_m, 11)[-1]
+            rsi_5m = get_rsi(close_array_5m, 11)[-1]
+            # 做T条件判断
+            if rsi_5m > g.L and rsi_m > g.S:
+                if get_position(g.security).long_amount == 0 and not g.B_T_flag:
+                    order_id = buy_open(g.security, g.amount)
+                    if order_id is not None:
+                        log.info('日内看多开多头仓')
+                        log.info('========================')
+                        g.B_T_flag = True
+                        g.B_T_cost = data[g.security].price
+            if rsi_5m < 100 - g.L and rsi_m < 100 - g.S:
+                if get_position(g.security).short_amount == 0 and not g.S_T_flag:
+                    order_id = sell_open(g.security, g.amount)
+                    if order_id is not None:
+                        log.info('日内看空开空头仓')
+                        log.info('========================')
+                        log.info(get_positions())
+                        g.S_T_flag = True
+                        g.S_T_cost = data[g.security].price
+    if g.B_T_flag:
+        if data[g.security].price >= g.B_T_cost * (1 + g.rate / 100):
+            order_id = sell_close(g.security, 1)
+            if order_id is not None:
+                log.info('多头仓做T后多头仓平仓')
+                log.info('------------------------')
+                g.B_T_flag = False
+    if g.S_T_flag:
+        if data[g.security].price <= g.S_T_cost * (1 - g.rate / 100):
+            order_id = buy_close(g.security, 1)
+            if order_id is not None:
+                log.info('空头仓做T后空头仓平仓')
+                log.info('------------------------')
+                g.S_T_flag = False
+    # 收盘前多次尝试将持仓恢复到开盘持有量
+    if k_num == 238:
+        log.info('收盘前尝试将持仓恢复到开盘持有量')
+        long_pos = get_long_position_list(context)
+        short_pos = get_short_position_list(context)
+        if long_pos:
+            order_id = sell_close(g.security, 1)
+            if order_id is not None:
+                log.info('收盘多头仓清算')
+        if short_pos:
+            order_id = buy_close(g.security, 1)
+            if order_id is not None:
+                log.info('收盘空头仓清算')
+
+
+# 获取RSI数据
+def get_rsi(array_list, periods=14):
+    length = len(array_list)
+    rsi_values = [np.nan] * length
+    if length <= periods:
+        return rsi_values
+    up_avg = 0
+    down_avg = 0
+
+    first_t = array_list[:periods + 1]
+    for i in range(1, len(first_t)):
+        if first_t[i] >= first_t[i - 1]:
+            up_avg += first_t[i] - first_t[i - 1]
+        else:
+            down_avg += first_t[i - 1] - first_t[i]
+    up_avg = up_avg / periods
+    down_avg = down_avg / periods
+    rs = up_avg / down_avg
+    rsi_values[periods] = 100 - 100 / (1 + rs)
+
+    for j in range(periods + 1, length):
+        if array_list[j] >= array_list[j - 1]:
+            up = array_list[j] - array_list[j - 1]
+            down = 0
+        else:
+            up = 0
+            down = array_list[j - 1] - array_list[j]
+        up_avg = (up_avg * (periods - 1) + up) / periods
+        down_avg = (down_avg * (periods - 1) + down) / periods
+        rs = up_avg / down_avg
+        rsi_values[j] = 100 - 100 / (1 + rs)
+    return rsi_values
+
+
+# 生成持仓股票列表
+def get_long_position_list(context):
+    position_list = []
+    for code in context.portfolio.positions:
+        if context.portfolio.positions[code].long_amount != 0:
+            position_list.append(code)
+    return position_list
+
+
+# 生成持仓股票列表
+def get_short_position_list(context):
+    position_list = []
+    for code in context.portfolio.positions:
+        if context.portfolio.positions[code].short_amount != 0:
+            position_list.append(code)
+    return position_list

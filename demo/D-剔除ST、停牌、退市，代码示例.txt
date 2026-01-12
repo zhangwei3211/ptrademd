@@ -1,0 +1,21 @@
+def initialize(context):
+    # 初始化策略
+    pass
+    
+    
+def before_trading_start(context, data):
+    stocks = get_Ashares()
+    print(len(stocks))
+    #去除所有ST,停牌，退市
+    st_status = get_stock_status(stocks, 'ST')
+    halt_status = get_stock_status(stocks, 'HALT')
+    delisting_status = get_stock_status(stocks, 'DELISTING')
+
+    for j in stocks.copy():
+        if st_status[j] or halt_status[j] or delisting_status[j] :
+            stocks.remove(j)    
+   
+    print('成功剔除所有ST、停牌，退市的股票，股票数量：',len(stocks))
+
+def handle_data(context, data):
+    pass

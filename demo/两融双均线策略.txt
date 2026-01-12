@@ -1,0 +1,90 @@
+"""
+策略名称：
+两融双均线策略
+运行周期:
+日线
+==============================================================================
+备注：该demo仅支持交易使用
+"""
+import numpy as np
+
+
+def initialize(context):
+    # 融资融券策略
+    # 初始化此策略
+    # 设置我们要操作的股票池, 这里我们只操作一支股票
+    g.security = '600570.SS'
+    # 默认买入股数
+    g.amount = 1000
+    if not is_trade():
+        log.info('两融demo策略无法在回测场景使用')
+
+
+
+def before_trading_start(context, data):
+    if not is_trade():
+        return
+    h = get_history(20, '1d', field=['close', 'volume'], security_list=g.security,
+                    fq='dypre', include=False, is_dict=True)
+    g.close_data = h[g.security]['close']
+
+
+def handle_data(context, data):
+    if not is_trade():
+        return
+    security = g.security
+    # 获取历史日K线数据
+    current_price = data[security].close
+    # 合成最新K线序列
+    close_data = np.concatenate((g.close_data, np.array(list([current_price]))), axis=0)
+    # 获取5日、10日均线
+    ma5 = get_ma(close_data, 5)
+    ma10 = get_ma(close_data, 10)
+
+    # 如果五日均线大于十日均线，进行买入
+    if ma5 > ma10:
+        # 获取最大可融资数量
+        amount = get_margincash_open_amount(security).get(security)
+        log.info('最大可融资买入的数量:%s' % amount)
+        # 可融资买入最大股数超过目标买入股数则用融资买入方式买入标的
+        if amount >= g.amount:
+            margincash_open(security, g.amount)
+            log.info('融资买入全部')
+        # 可融资买入最大股数小于目标买入股数但大于零则用先用融资买入方式买入部分，剩余部分用担保品交易方式进行买入
+        elif g.amount > amount > 0:
+            margincash_open(security, amount)
+            log.info('融资买入部分')
+            margin_trade(security, g.amount - amount)
+            log.info('担保品买入部分')
+        elif amount == 0:
+            margin_trade(security, g.amount)
+            log.info('担保品买入全部')
+        g.flag = False
+
+    # 如果五日均线小于十日均线，进行卖出
+    else:
+        hold_amount = get_position(security).enable_amount
+        if hold_amount > 0:
+            # 获取标的卖券还款最大可卖数量
+            amount = get_margincash_close_amount(security).get(security)
+            log.info('最大可卖券还款卖出的数量:%s' % amount)
+            # 如果卖券还款最大数量不小于持仓数量，则进行卖券还款操作
+            if amount >= hold_amount:
+                margincash_close(security, -amount)
+                log.info('卖券还款卖出全部')
+            # 如果卖券还款最大数量小于持仓数量，则先进行部分数量的卖券还款操作，剩余通过担保品交易卖出
+            elif hold_amount > amount > 0:
+                margincash_close(security, -amount)
+                log.info('卖券还款卖出部分')
+                margin_trade(security, -(hold_amount - amount))
+                log.info('担保品卖出部分')
+            # 如果卖券还款最大数量为零，则持仓部分用担保品方式卖出
+            elif amount == 0:
+                margin_trade(security, -hold_amount)
+                log.info('担保品卖出全部')
+
+
+# 获取MA函数
+def get_ma(close_array, num):
+    ma = close_array[-num:].mean()
+    return round(ma, 2)

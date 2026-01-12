@@ -1,0 +1,28 @@
+import time
+def initialize(context):
+    pass
+    
+    
+def before_trading_start(context, data):
+    stocks = get_Ashares()
+    #stocks = ['002427.SZ','688757.SS']
+    
+    #获取换手率大于10的个股：
+    stocks = turnover_limit(stocks)
+    print(len(stocks))
+    print(stocks)
+
+
+def turnover_limit(stocklist):
+    if stocklist :
+        current_time = time.strftime('%Y%m%d')
+        df = get_fundamentals(stocklist, 'valuation', date = current_time, fields = ['turnover_rate'])
+        stock = []
+        for i in stocklist :
+            if df['turnover_rate'][i] > 10:
+                stock.append(i)
+                
+                #print(i,df['turnover_rate'][i])
+        return stock
+    else :
+        return []

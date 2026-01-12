@@ -1,0 +1,13 @@
+def initialize(context):
+    g.security = '600570.SS'
+    set_universe(g.security)
+    g.stock = ['测试','600570.SS','000001.SZ']
+    
+    run_daily(context, D_stock, time='11:38')
+
+def handle_data(context, data):
+    pass
+
+
+def D_stock(context):
+    send_email('369375161@qq.com', ['369375161@qq.com','812922126@qq.com'], 'smtp授权码',info=g.stock)

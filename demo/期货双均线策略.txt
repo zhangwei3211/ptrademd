@@ -1,0 +1,64 @@
+"""
+策略名称：
+期货双均线策略
+运行周期:
+日线
+==============================================================================
+备注：该demo仅支持回测场景使用，如在交易场景使用，需要将主力合约代码，如"IF888.CCFX"
+替换为当前交易日正处理上市状态的合约代码
+"""
+import numpy as np
+
+
+def initialize(context):
+    g.target = 'IF'  # 设置交易标的
+    # 设置主力合约
+    g.security = g.target + '888.CCFX'
+    g.amount = 1
+    if not is_trade():
+        set_limit_mode('UNLIMITED')
+        set_margin_rate(g.target, 0.15)
+
+
+def before_trading_start(context, data):
+    h = get_history(20, '1d', field=['close', 'volume'], security_list=g.security,
+                    fq='dypre', include=False, is_dict=True)
+    g.close_data = h[g.security]['close']
+
+
+# 当五日均线高于十日均线时开多仓、平空仓，当五日均线低于十日均线时开空仓、平多仓
+def handle_data(context, data):
+    # 获取历史日K线数据
+    current_price = data[g.security].close
+    # 合成最新K线序列
+    close_data = np.concatenate((g.close_data, np.array(list([current_price]))), axis=0)
+    # 获取5日、10日均线
+    ma5 = get_ma(close_data, 5)
+    ma10 = get_ma(close_data, 10)
+    # 五日均线大于十日均线
+    if ma5 > ma10:
+        if get_position(g.security).long_amount == 0:
+            # 开一份多头仓
+            order_id = buy_open(g.security, g.amount)
+            log.info("开多头仓 %s" % g.security)
+        if get_position(g.security).short_amount != 0:
+            # 平一份空头仓
+            order_id = buy_close(g.security, g.amount)
+            log.info("平空头仓 %s" % g.security)
+
+    # 五日均线小于十日均线
+    elif ma5 < ma10:
+        if get_position(g.security).short_amount == 0:
+            # 开一份空头仓
+            order_id = sell_open(g.security, g.amount)
+            log.info("开空仓 %s" % g.security)
+        if get_position(g.security).long_amount != 0:
+            # 平一份多头仓
+            order_id = sell_close(g.security, g.amount)
+            log.info("平多仓 %s" % g.security)
+
+
+# 获取MA函数
+def get_ma(close_array, num):
+    ma = close_array[-num:].mean()
+    return round(ma, 2)

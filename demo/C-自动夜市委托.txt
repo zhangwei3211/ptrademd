@@ -1,0 +1,71 @@
+import time
+import math
+
+def initialize(context):
+    # 买入委托
+    run_daily(context, run_buy, time='19:30:00')
+    # 卖出委托
+    run_daily(context, run_sell, time='15:23:00')
+
+def handle_data(context, data):
+    pass
+    
+def run_buy(context):
+    print('开始buy夜市委托')
+    current_time = time.strftime('%H%M%S')
+    print('当前时间：',current_time)
+        
+    while current_time < '223000':
+        #买入
+        stock = ['159995.SZ']
+        vol = 1000
+        #限价委托，涨停价
+        #通过收盘价计算第二天的涨停价，向下取整，ETF是0.001，股票是0.01
+        close = get_history(1,'1d', 'close', stock, fq='pre',include=True,is_dict=True)
+        price_c = 1000*1.1*close[stock[0]][0][1]
+        price_c = math.floor(price_c)*0.001
+        print('通过收盘价计算的涨停价：',price_c)
+        #委托开始
+        
+        order_id = order(stock[0], vol, price_c)
+        current_order = get_order(order_id)
+        time.sleep(3)
+        
+        if current_order[0].status=='0' :
+            print('买入委托{}，数量{}，委托涨停价{}'.format(stock,vol,price_c))
+            break
+        time.sleep(1)
+        current_time = time.strftime('%H%M%S')
+        print('委托失败，继续委托',current_time)
+    
+    print('buy夜市委托结束')
+    
+def run_sell(context):
+    print('开始sell夜市委托')
+    current_time = time.strftime('%H%M%S')
+    print('当前时间：',current_time)
+        
+    while current_time < '223000':
+        #卖出
+        stock = ['159995.SZ']
+        vol = 1000
+        #限价委托，跌停价
+        #通过收盘价计算第二天的跌停价，向上取整，ETF是0.001，股票是0.01
+        close = get_history(1,'1d', 'close', stock, fq='pre',include=True,is_dict=True)
+        price_c = 1000*0.9*close[stock[0]][0][1]
+        price_c = math.ceil(price_c)*0.001
+        print('通过收盘价计算的跌停价：',price_c)
+        #委托开始
+        
+        order_id = order(stock[0], -vol, price_c)
+        current_order = get_order(order_id)
+        time.sleep(3)
+        
+        if current_order[0].status=='0' :
+            print('卖出委托{}，数量{}，委托跌停价{}'.format(stock,vol,price_c))
+            break
+        time.sleep(1)
+        current_time = time.strftime('%H%M%S')
+        print('委托失败，继续委托',current_time)
+    
+    print('sell夜市委托结束')
