@@ -1,0 +1,37 @@
+import time
+import pandas as pd
+import math
+
+
+def initialize(context):
+    g.stocks = []
+
+def before_trading_start(context, data):
+    stocks = get_Ashares()
+    #print(len(stocks))
+    #去除所有ST,停牌，退市
+    st_status = get_stock_status(stocks, 'ST')
+    halt_status = get_stock_status(stocks, 'HALT')
+    delisting_status = get_stock_status(stocks, 'DELISTING')
+
+    for j in stocks.copy():
+        if st_status[j] or halt_status[j] or delisting_status[j] :
+            stocks.remove(j) 
+    g.stocks = stocks
+    
+def handle_data(context, data):
+    datas = get_history(1, frequency='1m', field=['open','close'], security_list=g.stocks,include=True)
+    #print(datas)
+    
+    # 计算差值并除以open列
+    datas['change_ratio'] = (datas['close'] - datas['open']) / datas['open']
+
+    # 筛选出change_ratio大于0.04的行
+    filtered_df = datas[datas['change_ratio'] > 0.04]
+
+    # 提取满足条件的code列
+    codes = filtered_df['code']
+
+    # 将code列转换为列表
+    stockdata = codes.tolist()
+    print('1分钟涨跌幅>4的个股：',len(stockdata),stockdata)

@@ -1,0 +1,42 @@
+def initialize(context):
+    # 初始化策略
+    pass
+    
+    
+def before_trading_start(context, data):
+    #去除所有ST,停牌，退市
+    stocks = remove(get_Ashares())
+    #stocks = ['002427.SZ','603285.SS']
+    
+    
+    stock_list = []
+    one_list = []
+    for i in stocks :
+        codeData = get_history(2,'1d',['close', 'high_limit'],i,fq='pre',include=False)
+        #print(len(codeData),codeData)
+        if len(codeData) < 2 :
+            continue
+        if codeData['close'][1] == codeData['high_limit'][1]:
+            stock_list.append(i)
+            if codeData['close'][0] != codeData['high_limit'][0]:
+                one_list.append(i)
+    print('昨日涨停：',len(stock_list))
+    print('昨日一板：',len(one_list),one_list)
+
+    
+
+def handle_data(context, data):
+    pass
+
+
+def remove(stocks):
+    #去除所有ST,停牌，退市
+    st_status = get_stock_status(stocks, 'ST')
+    halt_status = get_stock_status(stocks, 'HALT')
+    delisting_status = get_stock_status(stocks, 'DELISTING')
+
+    for j in stocks.copy():
+        if st_status[j] or halt_status[j] or delisting_status[j] :
+            stocks.remove(j)    
+    return stocks
+    #print('成功剔除所有ST、停牌，退市的股票，股票数量：',len(stocks))

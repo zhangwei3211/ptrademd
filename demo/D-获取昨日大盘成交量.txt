@@ -1,0 +1,16 @@
+def initialize(context):
+    # 初始化策略
+    pass
+    
+    
+def before_trading_start(context, data):
+    vol = trade_vol()  #大盘成交量
+    print('昨日大盘成交量：',str(vol)+'万亿')
+
+def trade_vol():
+    # 获取大盘成交量，取当日用include=True
+    vol_data = get_history(1, '1d', 'money', ['000001.SS','399001.SZ'], fq=None, include=False)
+    sh_vol = vol_data['money'][0]
+    sz_vol = vol_data['money'][1]
+    tol_vol = round((sh_vol + sz_vol)/1000000000000,2)
+    return tol_vol

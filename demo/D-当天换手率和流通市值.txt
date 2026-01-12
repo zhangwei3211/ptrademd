@@ -1,0 +1,34 @@
+import time
+'''
+当天换手率的计算公式：当日成交量（股数）/流通股数*100%
+当天流通市值的计算公式：当日收盘价*流通股数
+'''
+
+def initialize(context):
+    pass
+
+
+def before_trading_start(context, data):
+    stocklist = ['300399.SZ']
+    current_time = time.strftime('%Y%m%d')
+    # get_fundamentals()只能获取前一天的流通市值和换手率，'a_floats'是流通股数，由于长期不变，所以用来计算当日流通市值和换手率
+    df = get_fundamentals(stocklist, 'valuation', date = current_time, fields = ['float_value','turnover_rate','a_floats'])
+    print('通过财务接口获取的流通市值和换手率：',df['float_value'][0],df['turnover_rate'][0])
+    
+    
+    
+    for i in stocklist:
+        # 通过get_history()取当天收盘价和成交数量，获取当天的流通市值和换手率
+        df2 = get_history(1,'1d',['close','volume'],i,fq='pre',include=True)
+        
+        f_value = df['a_floats'][i]*df2['close'][0]
+        print('当天流通市值：',f_value)
+    
+        print('当天成交数量：',df2['volume'][0])
+    
+        t_rate = 100*df2['volume'][0]/df['a_floats'][i]
+        print('当天换手率：',t_rate)
+
+
+def handle_data(context, data):
+    pass
