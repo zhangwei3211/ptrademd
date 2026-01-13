@@ -1,166 +1,14 @@
 # [Ptrade API文档](https://ptradeapi.com/#)
 
-### [>>> QMT API文档](http://qmt.ptradeapi.com/)
-
-#### 本站点由公众号：可转债量化分析 提供资源部署。并定期更新API和示例
-
-![img](https://ptradeapi.com/hub/static/images/data/kzz.jpg)
-
-如需开通Ptrade权限的券商，请关注公众号并后台留言：ptrade开通 或者 ptrade试用，市面上支持ptrade的券商均可开通
-
-ptrade、qmt策略代写后台留言：ptrade代写
-
-##### 开户后可加入Ptrade,QMT 微信群，获得代码指导学习机会
-
-目前支持券商有 [国盛证券(SZ002670)](https://xueqiu.com/snowman/S/SZ002670)，[国金证券(SH600109)](https://xueqiu.com/S/SH600109)，东莞证券，[湘财证券(大智慧)](https://xueqiu.com/S/SH601519)，[长江证券](https://xueqiu.com/S/SZ000783)，[国泰君安-海通](https://xueqiu.com/S/SH601211)等
-
-##### Ptrade试用账号：55010687，登录密码：259800 (下载国金Ptrade测试版登录，下面有链接)
-
-##### （试用账号为共享账号，登录人数多，服务卡顿锁住无法保证。可开户后申请个人独立账号，可公众号联系开通）
-
-##### 共享账号请勿存放个人敏感策略和数据, 他人登录后可更改、删除
-
-
-
-##### 同时Ptrade提供代码加密下载与上传功能，加密策略对方只能运行，无法查看具体源码，可保证源代码不泄密.
-
-##### Ptrade软件下载链接（安装后ptrade会自动升级更新到最新）
-
-[国金证券-Ptrade实盘版](https://download.gjzq.com.cn/gjty/organ/gjzqptd.rar)
-
-[国金证券-Ptrade测试版](https://download.gjzq.com.cn/temp/organ/gjzqptrade_ceshi.rar)
-
-[国盛证券-Ptrade实盘版](https://download.gszq.com/ptrade/PTrade1.0-Client-V201901-04-000.zip)
-
-[国盛证券-Ptrade测试版](https://download.gszq.com/ptrade/PTrade1.0-Client-V201906-00-000.zip)
-
-[湘财证券-Ptrade实盘版](http://wap.xcsc.com/file/Ptrade/Ptrade.exe)
-
-[湘财证券-Ptrade测试版](https://pan.baidu.com/s/1ekrPh0Xk4UV7uC8oLSpRZw)（提取码：8jmg）
-
-[东莞证券-Ptrade实盘版](https://media.dgzq.com.cn/app/file/get?group=group1&name=M00/00/95/rBQam2YKEXOACyPRCgyAaEJhSHs591.exe&fileName=PTrade1.0-Client-V202301-45(东莞))
-
-[东莞证券-Ptrade测试版](https://ptradeapi.com/#)
-
-[国泰君安-海通-Ptrade测试版](https://dl2.app.gtja.com/dzswem/softwareVersion/202504/07/PTrade1.0-Client-V202403-07-000(PTrade-UAT).zip)
-
-[国泰君安-海通-Ptrade实盘版](https://dl2.app.gtja.com/dzswem/softwareVersion/202504/07/PTrade1.0-Client-V202403-07-005(PTrade).zip)
-
-[长江证券-Ptrade实盘版](https://downcq.95579.com/jcj/zg/PTrade1.0-Client-V202308-15-000_CY.zip)
-
-[山西证券-Ptrade测试版](https://dn2-ctc.i618.com.cn/download/PTrade1.0-ClientV202502-05-101-10969-FZ-001(山西-FZ).zip)
-
-[山西证券-Ptrade实盘版](https://dn2-ctc.i618.com.cn/download/PTrade1.0-ClientV202502-05-101-10969-SC-001(山西).zip)
-
-[申万宏源-Ptrade实盘版](https://pcd.swhysc.com/static-file/software/SWHY_PTrade1.0_Client_V202308.zip)
-
-如果链接失效，可私信公众号单独发送
-
-
+### 
 
 券商实盘版无法盘中回测，可盘后回测；部分券商实盘版不支持回测。（盘中回测消耗服务器资源导致实盘运行的策略变慢，以至于大部分券商停掉盘中回测功能）
 
 需要回测功能的，可申请模拟客户端，回测没有时间限制
 
-# 必看-快速了解Ptrade
+#### 
 
 
-
-#### 本文在原API文档的基础上加入个人的理解，和容易被忽略的地方，对原文档不够详尽的地方，稍加提示,并加入可转债实盘的示例代码
-
-
-
-
-
-
-
-#### 下面针对平时咨询最多的问题，简要的 Q & A :
-
-
-
-Ptrade运行在券商机房，属于托管模式，所以稳定性和速度要高于QMT, 不会因为网络不稳定，电脑死机等外部因素导致行情丢失
-
-
-
-Ptrade由恒生电子开发，券商采购后提供给用户使用，会有一定的资金要求门槛，不同营业部不同券商会有区别，可扫码公众号二维码咨询
-
-
-
-Ptrade支持的交易品种：股票，基金ETF，可转债（T+0），债券，级别为tick，最小时间粒度是3s。委托档位默认可以获取到十档
-
-
-
-Ptrade内置运行python版本：部分券商（国金）Ptrade内置python版本更新到3.11，而大部分券商停留在3.5。 Python版本不同，Ptrade部分函数也会有不同，数据返回的格式也有区别，具体数据以你券商Ptrade为准
-
-
-
-运行模式： 在Ptrade里面写好的策略代码，保存，在交易面板里点击运行，程序每天运行,真正做到无人值守,不需要额外购买云服务器或者本地电脑。如果需要停止，在Ptrade里面点击停止按钮即可终止策略
-
-
-
-Ptrade编辑策略环境：windows系统。支持虚拟机上安装运行；如果是macbook OSX / Linux系统， 可以先安装一个虚拟机，然后将Ptrade安装在虚拟机上，在上面编写你的策略代码并运行，后面就可以退出你的虚拟机，而策略会在券商机房里面一直运行。
-
-
-
-除了使用python编程编写策略以外，Ptrade也自带了量化工具，你只需要点点鼠标，设置几个参数就可以运行一些基本的大众化量化策略，比如有：ETF趋势交易，网格交易，大股东增持策略，拐点交易，盘口扫单，篮子交易，追涨停，可转债套利等
-
-![img](https://ptradeapi.com/hub/static/images/quant_tool.jpg)
-
-
-
-由于托管在券商机房，Ptrade处于内网环境，无法连接到互联网。并且Ptrade内部无法通过python的pip安装第三方的库，只允许使用内置的第三方库，具体支持的第三方库可以参考这里 [内置第三方库](https://ptradeapi.com/#支持的三方库)
-
-
-
-但也有极少数的券商的Ptrade支持链接外网功能，因为可以通过http接口的方式与Ptrade进行数据传输，甚至可以通过http触发下单信号，Ptrade只执行下单操作，笔者编写了大量的可转债接口数据，可以实时传输给Ptrade，从而解决Ptrade缺乏可转债溢价率，规模，评级，强赎，YTM等因子的数据源问题，因子笔者推荐大家开通此类券商的ptrade，可以很有效地解决数据缺失的问题
-
-
-
-##### Ptrade支持：沪深A股，主板，中小板，创业板，科创板
-
-
-
-##### Ptrade默认可获取委托十档数据，部分券商内置了L2逐笔数据，重点是免费的
-
-
-
-#### 持续更新.....
-
-# 视频教程
-
-之前上传到知乎的Ptrade视频教程，共有18个短视频，配合本API文档观看，效果更佳
-
-[Ptrade 18节课 视频教程](https://zhuanlan.zhihu.com/p/399103868)
-
-[![img](https://ptradeapi.com/hub/static/images/help/ptrade_video.png)](https://zhuanlan.zhihu.com/p/399103868)
-
-# 快速入门
-
-## 新建策略
-
-开始回测和交易前需要先新建策略，点击下图中左上角标识进行策略添加。可以选择不同的业务类型（比如股票），然后给策略设定一个名称，添加成功后可以在默认策略模板基础上进行策略编写。
-
-![img](https://ptradeapi.com/hub/static/images/help/creat_strategy.png)
-
-## 新建回测
-
-策略添加完成后就可以开始进行回测操作了。回测之前需要对开始时间、结束时间、回测资金、回测基准、回测频率几个要素进行设定，设定完毕后点击保存。然后再点击回测按键，系统就会开始运行回测，回测的评价指标、收益曲线、日志都会在界面中展现。
-
-![img](https://ptradeapi.com/hub/static/images/help/backtest_factor.png)
-
-## 新建交易
-
-交易界面点击新增按键进行新增交易操作，策略方案中的对象为所有策略列表中的策略，给本次交易设定名称并点击确定后系统就开始运行交易了。
-
-![img](https://ptradeapi.com/hub/static/images/help/creat_trade.png)
-
-交易开始运行后，可以实时看到总资产和可用资金情况，同时可以在交易列表查询交易状态。
-
-![img](https://ptradeapi.com/hub/static/images/help/account_info.png)
-
-交易开始运行后，可以点击交易详情，查看策略评价指标、交易明细、持仓明细、交易日志。
-
-![img](https://ptradeapi.com/hub/static/images/help/trade_info.png)
 
 ## 策略运行周期
 
@@ -9576,15 +9424,2971 @@ b_df = bond.get_bond()
 
 
 
-# 知识星球
+# Ptrade量化Demo
 
-欢迎加入量化交易知识星球，获取更多量化交易知识。
+本节内容所包含的Demo仅用作展示如何正确使用Ptrade API，不可当做正式交易策略。
 
-量化路上能找到咨询的人不多，笔者也是自己一路踩坑，琢磨策略，调试代码，现在大部分问题看一眼代码或者提问者详细描述问题后，基本都能够诊断出问题症结所在。
+## ETF震荡策略-RSI
 
-我也加了不少量化群，实际里面真心讨论技术和解答代码的寥寥无几。所以建的知识星球专注于量化实盘领域，分享现成的经过实盘考验的Ptrade或者QMT代码，和解答各种疑难杂症
+```python
+import numpy as np
+import datetime
+
+"""
+ETF RSI震荡交易策略：使用特定ETF列表交易
+整合了RSI和支撑压力位的交易逻辑，高效版本
+"""
+
+def initialize(context):
+    # 使用固定ETF列表代替选股逻辑
+    context.stock_list = [
+        '513360.SS',  # 示例ETF代码
+        '159985.SZ',
+        '513310.SS',
+        '518880.SS',
+        '513060.SS',
+        '513120.SS',
+        '513010.SS',
+        '159740.SZ',
+        '511380.SS',
+        '513330.SS',
+        '513130.SS',
+        '513090.SS'
+    ]
+    
+    # 设置股票池
+    set_universe(context.stock_list)
+    log.info("ETF RSI震荡策略初始化完成，交易ETF数: {}".format(len(context.stock_list)))
+    
+    # 区间震荡参数 - 保留仅作为参考
+    context.range_period = 60      # 检查区间震荡的时间周期由30天改为60天
+    context.range_ratio_max = 0.15  # 最大波动率略微调小到15%，适应ETF特性
+    context.range_ratio_min = 0.05  # 最小波动率降低到5%，适应ETF波动较小的特性
+    context.trend_threshold = 0.03  # 趋势强度阈值略微降低到3%，提高震荡ETF识别精度
+    
+    # 资金控制参数
+    context.max_capital = 20000000    # 最大使用资金2000万
+    context.max_positions = 5      # 最大持仓ETF数5只
+    context.max_capital_per_stock = 20000  # 每只ETF最大资金20000元
+    
+    # RSI参数 - 为ETF调整参数
+    context.rsi_short = 6
+    context.rsi_buy_base = 30    # RSI基础买入阈值
+    context.rsi_sell_base = 85   # RSI基础卖出阈值
+    context.rsi_float_range = 20 # RSI浮动范围
+    
+    # 支撑压力位和其他参数
+    context.support_period = 20
+    context.price_threshold = 0.015
+    
+    # 卖出条件参数 - 调整为适合ETF的参数
+    context.intraday_high_pct = 0.02
+    context.min_high_pct = 0.015
+    context.entry_high_pct = 0.015
+    context.vol_surge_ratio = 1.5
+    context.slow_rise_pct = 0.03
+    context.max_holding_days = 15
+    
+    # 止损止盈参数 - 调整为适合ETF的参数
+    context.stop_loss_pct = 0.015      # 止损1.5%
+    context.profit_target_pct = 0.05  # 盈利目标5%
+    context.profit_retreat_pct = 0.01 # 回撤阈值1%
+    
+    # 冷静期参数
+    context.cooling_days_technical = 1
+    context.cooling_days_profit = 2
+    
+    # 初始化数据
+    context.stock_data = {}
+    context.filtered_stocks = []
+    
+    # 缓存数据
+    context.data_cache = {}
+    context.last_filter_day = None
+
+
+def before_trading_start(context, data):
+    """使用固定ETF列表代替选股逻辑"""
+    current_date = get_trading_day()
+    
+    # 如果不是新的交易日，使用缓存的ETF列表
+    if context.last_filter_day == current_date:
+        log.info("使用缓存的ETF列表，共{}只ETF".format(len(context.filtered_stocks)))
+        return
+    
+    # 更新最后筛选日期
+    context.last_filter_day = current_date
+    
+    # 使用固定的ETF列表代替筛选逻辑
+    context.filtered_stocks = context.stock_list.copy()
+    
+    log.info("固定ETF列表数量: {}".format(len(context.filtered_stocks)))
+    
+    # 处理已持有ETF
+    for stock in list(context.stock_data.keys()):
+        position = get_position(stock)
+        has_position = position is not None and position.amount > 0
+        
+        if has_position and stock not in context.filtered_stocks:
+            context.filtered_stocks.append(stock)
+        elif not has_position and stock not in context.filtered_stocks:
+            del context.stock_data[stock]
+    
+    # 更新冷静期状态
+    for stock in context.filtered_stocks:
+        if stock not in context.stock_data:
+            context.stock_data[stock] = {
+                'hold_position': False,
+                'can_buy': True,
+                'entry_price': 0,
+                'entry_date': None,
+                'today_open': None,
+                'today_low': None,
+                'intraday_prices': [],
+                'intraday_volumes': [],
+                'day_high_price': 0,
+                'vol_avg': None,
+                'max_profit_pct': 0,
+                'cooling_days_left': 0
+            }
+        
+        # 检查冷静期
+        if context.stock_data[stock]['cooling_days_left'] > 0:
+            context.stock_data[stock]['cooling_days_left'] -= 1
+            context.stock_data[stock]['can_buy'] = False
+        else:
+            context.stock_data[stock]['can_buy'] = True
+        
+        # 重置当日数据
+        context.stock_data[stock]['today_open'] = None
+        context.stock_data[stock]['today_low'] = None
+        context.stock_data[stock]['intraday_prices'] = []
+        context.stock_data[stock]['intraday_volumes'] = []
+        context.stock_data[stock]['day_high_price'] = 0
+        context.stock_data[stock]['vol_avg'] = None
+
+
+# 判断是否在尾盘10分钟
+def is_last_10_minutes(current_dt):
+    hour = current_dt.hour
+    minute = current_dt.minute
+    return (hour == 14 and minute >= 50) or (hour == 15 and minute == 0)
+
+
+# 快速计算RSI指标 - 使用numpy向量化运算
+def calc_rsi(close_array, period):
+    if len(close_array) < period + 1:
+        return None
+    
+    # 使用numpy快速计算差值和增减
+    deltas = np.diff(close_array)
+    seed = deltas[-period:]
+    
+    # 使用numpy快速计算上涨和下跌
+    ups = seed.copy()
+    downs = seed.copy()
+    ups[ups < 0] = 0
+    downs[downs > 0] = 0
+    downs = abs(downs)
+    
+    # 快速计算平均值
+    avg_up = np.mean(ups)
+    avg_down = np.mean(downs)
+    
+    if avg_down == 0:
+        return 100
+    
+    rs = avg_up / avg_down
+    rsi = 100 - (100 / (1 + rs))
+    
+    return rsi
+
+
+# 优化版本：快速寻找支撑位和压力位
+def find_support_resistance(close_array, high_array, low_array, period, context):
+    if len(close_array) < period:
+        return None, None
+    
+    # 快速找局部最高点和最低点
+    current_price = close_array[-1]
+    
+    # 使用窗口滑动法快速找局部最低点
+    support_candidates = []
+    resistance_candidates = []
+    
+    # 只考虑最近的点位
+    recent_high = high_array[-period:]
+    recent_low = low_array[-period:]
+    
+    # 简化算法：直接找出最近的局部最低和最高价格点
+    for i in range(1, len(recent_low)-1):
+        if recent_low[i] < recent_low[i-1] and recent_low[i] < recent_low[i+1]:
+            support_candidates.append(recent_low[i])
+    
+    for i in range(1, len(recent_high)-1):
+        if recent_high[i] > recent_high[i-1] and recent_high[i] > recent_high[i+1]:
+            resistance_candidates.append(recent_high[i])
+    
+    # 快速筛选接近当前价格的支撑位和压力位
+    nearby_supports = [s for s in support_candidates if s < current_price and (current_price - s) / current_price < context.price_threshold]
+    nearby_resistances = [r for r in resistance_candidates if r > current_price and (r - current_price) / current_price < context.price_threshold]
+    
+    # 如果有多个，选择最接近的
+    support = max(nearby_supports) if nearby_supports else None
+    resistance = min(nearby_resistances) if nearby_resistances else None
+    
+    return support, resistance
+
+
+# 检查价格是否突破压力位
+def is_price_breaking_resistance(current_price, resistance):
+    return resistance is not None and current_price > resistance
+
+
+# 优化版本：检查价格是否处于"盘中冲高"状态
+def is_intraday_price_surging(current_price, stock_data, context):
+    if len(stock_data['intraday_prices']) < 30:
+        return False
+    
+    # 更新当日最低价和最高价
+    if stock_data['today_low'] is None or current_price < stock_data['today_low']:
+        stock_data['today_low'] = current_price
+    
+    if current_price > stock_data['day_high_price']:
+        stock_data['day_high_price'] = current_price
+    
+    # 快速计算涨幅
+    open_surge_pct = 0 if stock_data['today_open'] is None else (current_price / stock_data['today_open'] - 1)
+    low_surge_pct = 0 if stock_data['today_low'] is None else (current_price / stock_data['today_low'] - 1)
+    entry_surge_pct = 0 if stock_data['entry_price'] == 0 else (current_price / stock_data['entry_price'] - 1)
+    
+    # 条件检查
+    condition1 = open_surge_pct >= context.intraday_high_pct
+    condition2 = low_surge_pct >= context.min_high_pct
+    condition3 = entry_surge_pct >= context.entry_high_pct
+    
+    # 成交量检查
+    condition4 = False
+    if len(stock_data['intraday_volumes']) > 20:
+        avg_volume = np.mean(stock_data['intraday_volumes'][-20:-1])
+        current_vol = stock_data['intraday_volumes'][-1]
+        condition4 = current_vol > avg_volume * context.vol_surge_ratio
+    
+    # 满足至少3个条件
+    return sum([condition1, condition2, condition3, condition4]) >= 3
+
+
+# 优化版本：检查是否满足"缓慢涨幅"卖出条件
+def is_slow_rise_sell_condition(current_price, resistance, rsi, stock_data, context):
+    if stock_data['entry_price'] == 0:
+        return False
+    
+    profit_pct = (current_price / stock_data['entry_price'] - 1)
+    
+    # 快速条件检查
+    return (rsi > context.rsi_sell_base and 
+            is_price_breaking_resistance(current_price, resistance) and 
+            profit_pct >= context.slow_rise_pct)
+
+
+# 获取持仓成本的安全方法
+def get_position_cost(position):
+    if hasattr(position, 'avg_cost'):
+        return position.avg_cost
+    if hasattr(position, 'vwap'):
+        return position.vwap
+    if hasattr(position, 'cost_basis'):
+        return position.cost_basis
+    
+    return 0
+
+
+# 优化版本：调整RSI阈值
+def adjust_rsi_threshold(current_price, support, resistance, context):
+    # 快速计算调整值
+    buy_adjust = 0
+    sell_adjust = 0
+    
+    if support is not None:
+        support_proximity = (current_price - support) / current_price
+        buy_adjust = int(context.rsi_float_range * (1 - support_proximity / context.price_threshold))
+    
+    if is_price_breaking_resistance(current_price, resistance) and resistance is not None:
+        breakout_strength = (current_price - resistance) / resistance
+        sell_adjust = min(int(context.rsi_float_range * min(breakout_strength * 10, 1)), context.rsi_float_range)
+    
+    # 快速计算阈值
+    buy_threshold = context.rsi_buy_base + buy_adjust
+    sell_threshold = context.rsi_sell_base + sell_adjust
+    sell_threshold = min(sell_threshold, 95)
+    
+    return buy_threshold, sell_threshold
+
+
+# 优化后的每日收盘后处理函数
+def after_trading_end(context, data):
+    for stock in context.filtered_stocks:
+        # 直接设置看多信号
+        if stock in context.stock_data:
+            context.stock_data[stock]['market_signal'] = 'bullish'
+
+
+# 优化的主要处理函数
+def handle_data(context, data):
+    current_time = context.current_dt
+    is_tailend = is_last_10_minutes(current_time)
+    
+    # 仅在尾盘时记录ETF池状态
+    if is_tailend and current_time.minute == 50 and current_time.second < 10:
+        log.info("今日考虑交易的ETF数量: {}".format(len(context.filtered_stocks)))
+        log.info("账户总资产: {:.2f}万, 可用资金: {:.2f}万".format(
+            context.portfolio.total_value/10000, context.portfolio.cash/10000))
+    
+    # 获取当前持仓数量
+    positions = context.portfolio.positions
+    held_positions = len([p for p in positions.values() if p.amount > 0])
+    
+    # 如果已达到最大持仓，并且不在尾盘时间，跳过买入检查
+    if held_positions >= context.max_positions and not is_tailend:
+        return
+    
+    # 优化：只在尾盘检查买入
+    if is_tailend:
+        # 获取待检查的未持仓ETF
+        check_stocks = [s for s in context.filtered_stocks 
+                        if s not in positions or positions[s].amount == 0]
+        
+        # 分批处理ETF
+        for stock in check_stocks:
+            try:
+                # 获取当前价格
+                price_data = None
+                if stock in data:
+                    current_price = data[stock].close
+                else:
+                    # 使用历史数据获取价格
+                    price_data = get_history(1, '1d', 'close', stock)
+                    if price_data is None or price_data.empty:
+                        continue
+                    current_price = price_data.iloc[-1]['close']
+                
+                # 获取交易状态数据
+                if stock not in context.stock_data:
+                    continue
+                stock_data = context.stock_data[stock]
+                
+                # 检查是否可买入
+                if not stock_data['can_buy']:
+                    continue
+                
+                # 获取历史数据计算指标
+                hist_data = get_history(60, '1d', field=['close', 'high', 'low'], security_list=stock)
+                if hist_data is None or hist_data.empty:
+                    continue
+                
+                close_data = hist_data['close'].values  # 转为numpy数组加速计算
+                high_data = hist_data['high'].values
+                low_data = hist_data['low'].values
+                
+                # 计算RSI
+                rsi6 = calc_rsi(close_data, context.rsi_short)
+                if rsi6 is None:
+                    continue
+                
+                # 寻找支撑位和压力位
+                support, resistance = find_support_resistance(close_data, high_data, low_data, context.support_period, context)
+                
+                # 调整RSI阈值
+                rsi_buy_threshold, _ = adjust_rsi_threshold(current_price, support, resistance, context)
+                
+                # 检查RSI买入条件
+                if rsi6 < rsi_buy_threshold:
+                    # 检查持仓上限
+                    if held_positions >= context.max_positions:
+                        continue
+                        
+                    # 计算可用资金
+                    cash = context.portfolio.cash
+                    available_cash = min(cash, context.max_capital_per_stock)
+                    
+                    if available_cash < 2000:
+                        continue
+                    
+                    # 计算买入数量
+                    buy_amount = int(available_cash / current_price / 100) * 100
+                    
+                    if buy_amount >= 100:
+                        log.info("买入 {} - RSI={:.2f}<{:.2f}, 价格={:.2f}, 数量={}份".format(
+                            stock, rsi6, rsi_buy_threshold, current_price, buy_amount))
+                        
+                        # 执行买入
+                        order(stock, buy_amount)
+                        
+                        # 更新交易状态
+                        stock_data['hold_position'] = True
+                        stock_data['entry_price'] = current_price
+                        stock_data['entry_date'] = current_time.strftime('%Y-%m-%d')
+                        
+                        # 更新持仓计数
+                        held_positions += 1
+            except Exception as e:
+                continue
+    
+    # 处理已持仓的ETF - 检查卖出条件
+    held_stocks = [stock for stock, position in positions.items() if position.amount > 0]
+    
+    # 处理持仓ETF
+    for stock in held_stocks:
+        try:
+            # 获取价格
+            if stock in data:
+                current_price = data[stock].close
+                current_volume = data[stock].volume if hasattr(data[stock], 'volume') else 0
+            else:
+                # 使用历史数据
+                price_data = get_history(1, '1d', ['close', 'volume'], stock)
+                if price_data is None or price_data.empty:
+                    continue
+                current_price = price_data['close'].iloc[-1]
+                current_volume = price_data['volume'].iloc[-1] if 'volume' in price_data else 0
+            
+            # 获取持仓信息
+            position = positions[stock]
+            current_amount = position.amount
+            
+            # 获取交易状态数据
+            if stock not in context.stock_data:
+                continue
+            stock_data = context.stock_data[stock]
+            
+            # 更新价格数据
+            stock_data['intraday_prices'].append(current_price)
+            if current_volume > 0:
+                stock_data['intraday_volumes'].append(current_volume)
+            
+            # 更新开盘价
+            if stock_data['today_open'] is None and stock in data and hasattr(data[stock], 'open'):
+                stock_data['today_open'] = data[stock].open
+            
+            # 检查持仓成本和持仓天数
+            entry_price = stock_data['entry_price']
+            entry_date = stock_data['entry_date']
+            
+            # 如果没有保存入场价，使用持仓的平均成本
+            if entry_price == 0:
+                entry_price = get_position_cost(position)
+                stock_data['entry_price'] = entry_price
+            
+            # 如果没有保存入场日期，使用当前日期
+            if not entry_date:
+                entry_date = current_time.strftime('%Y-%m-%d')
+                stock_data['entry_date'] = entry_date
+            
+            # 计算持仓天数和盈亏
+            holding_days = 0
+            if entry_date:
+                entry_date_obj = datetime.datetime.strptime(entry_date, '%Y-%m-%d')
+                holding_days = (current_time.date() - entry_date_obj.date()).days
+            
+            profit_pct = (current_price / entry_price - 1) * 100
+            
+            # 更新最大盈利
+            if profit_pct > stock_data['max_profit_pct']:
+                stock_data['max_profit_pct'] = profit_pct
+            
+            # 获取历史数据计算技术指标
+            hist_data = get_history(60, '1d', field=['close', 'high', 'low'], security_list=stock)
+            if hist_data is None or hist_data.empty:
+                continue
+            
+            close_data = hist_data['close'].values
+            high_data = hist_data['high'].values
+            low_data = hist_data['low'].values
+            
+            # 计算RSI
+            rsi6 = calc_rsi(close_data, context.rsi_short)
+            if rsi6 is None:
+                continue
+            
+            # 寻找支撑位和压力位
+            support, resistance = find_support_resistance(close_data, high_data, low_data, context.support_period, context)
+            
+            # 调整RSI阈值
+            _, rsi_sell_threshold = adjust_rsi_threshold(current_price, support, resistance, context)
+            
+            # 检查价格是否处于盘中冲高状态
+            is_price_surging = False
+            if len(stock_data['intraday_prices']) >= 30:
+                is_price_surging = is_intraday_price_surging(current_price, stock_data, context)
+            
+            # 检查是否满足缓慢涨幅卖出条件
+            is_slow_rise = is_slow_rise_sell_condition(current_price, resistance, rsi6, stock_data, context)
+            
+            # 检查卖出条件
+            sell_signal = False
+            sell_type = None
+            
+            # 卖出条件1：技术指标
+            if is_price_surging or rsi6 > rsi_sell_threshold or is_slow_rise:
+                sell_signal = True
+                sell_type = "technical"
+            
+            # 卖出条件2：止损 - 1.5%止损
+            elif profit_pct < -context.stop_loss_pct * 100:
+                sell_signal = True
+                sell_type = "stop_loss"
+            
+            # 卖出条件3：止盈回撤 - 5%盈利后回撤1%
+            elif (stock_data['max_profit_pct'] >= context.profit_target_pct * 100 and 
+                 (stock_data['max_profit_pct'] - profit_pct) >= context.profit_retreat_pct * 100):
+                sell_signal = True
+                sell_type = "profit_taking"
+            
+            # 卖出条件4：持仓超时
+            elif holding_days >= context.max_holding_days:
+                sell_signal = True
+                
+                sell_type = "timeout"
+            
+            # 执行卖出
+            if sell_signal:
+                # 记录卖出原因
+                sell_reasons = {
+                    "technical": "技术指标",
+                    "stop_loss": "止损",
+                    "profit_taking": "止盈回撤",
+                    "timeout": "持仓时间超限"
+                }
+                
+                log.info("卖出 {} - 原因: {}, 买价: {:.2f}, 卖价: {:.2f}, 数量: {}, 盈亏: {:.2f}%, 持仓天数: {}".format(
+                    stock, sell_reasons.get(sell_type, "未知"), 
+                    entry_price, current_price, current_amount,
+                    profit_pct, holding_days))
+                
+                # 执行卖出
+                order(stock, -current_amount)
+                
+                # 设置冷静期
+                if sell_type == "profit_taking":
+                    stock_data['cooling_days_left'] = context.cooling_days_profit
+                else:
+                    stock_data['cooling_days_left'] = context.cooling_days_technical
+                
+                # 重置交易状态
+                stock_data['hold_position'] = False
+                stock_data['can_buy'] = False
+                stock_data['entry_price'] = 0
+                stock_data['max_profit_pct'] = 0
+        except:
+            continue
+```
 
 
 
-![量化交易实盘知识星球](https://ptradeapi.com/hub/static/images/f088492c7da0ce8b90cbdb7aafe3b191.png)
+## PT自动国债逆回购
+
+```python
+import math
+
+
+def initialize(context):
+    # 初始化策略
+    run_daily(context,get_nihuigou,time = '15:01')
+
+def handle_data(context, data):
+    pass
+
+def get_nihuigou(context):
+    print('进入逆回购')
+    
+    shen = get_snapshot('131810.SZ')['131810.SZ']['last_px']
+    hu = get_snapshot('204001.SS')['204001.SS']['last_px']
+    
+    if shen >= hu :
+        option = '131810.SZ'
+        print('借出深市，价格：%f' %shen)
+    else:
+        option = '204001.SS'
+        print('借出沪市，价格：%f' %hu)
+        
+    cash = context.portfolio.cash
+    amount = cash*0.001
+    amount = math.floor(amount)
+    print('可用资金：',cash)
+    print('可用数量：',amount)
+    order(option, -10*amount)
+```
+
+
+
+## 自动夜市委托
+
+```python
+import time
+import math
+
+def initialize(context):
+    # 买入委托
+    run_daily(context, run_buy, time='19:30:00')
+    # 卖出委托
+    run_daily(context, run_sell, time='15:23:00')
+
+def handle_data(context, data):
+    pass
+    
+def run_buy(context):
+    print('开始buy夜市委托')
+    current_time = time.strftime('%H%M%S')
+    print('当前时间：',current_time)
+        
+    while current_time < '223000':
+        #买入
+        stock = ['159995.SZ']
+        vol = 1000
+        #限价委托，涨停价
+        #通过收盘价计算第二天的涨停价，向下取整，ETF是0.001，股票是0.01
+        close = get_history(1,'1d', 'close', stock, fq='pre',include=True,is_dict=True)
+        price_c = 1000*1.1*close[stock[0]][0][1]
+        price_c = math.floor(price_c)*0.001
+        print('通过收盘价计算的涨停价：',price_c)
+        #委托开始
+        
+        order_id = order(stock[0], vol, price_c)
+        current_order = get_order(order_id)
+        time.sleep(3)
+        
+        if current_order[0].status=='0' :
+            print('买入委托{}，数量{}，委托涨停价{}'.format(stock,vol,price_c))
+            break
+        time.sleep(1)
+        current_time = time.strftime('%H%M%S')
+        print('委托失败，继续委托',current_time)
+    
+    print('buy夜市委托结束')
+    
+def run_sell(context):
+    print('开始sell夜市委托')
+    current_time = time.strftime('%H%M%S')
+    print('当前时间：',current_time)
+        
+    while current_time < '223000':
+        #卖出
+        stock = ['159995.SZ']
+        vol = 1000
+        #限价委托，跌停价
+        #通过收盘价计算第二天的跌停价，向上取整，ETF是0.001，股票是0.01
+        close = get_history(1,'1d', 'close', stock, fq='pre',include=True,is_dict=True)
+        price_c = 1000*0.9*close[stock[0]][0][1]
+        price_c = math.ceil(price_c)*0.001
+        print('通过收盘价计算的跌停价：',price_c)
+        #委托开始
+        
+        order_id = order(stock[0], -vol, price_c)
+        current_order = get_order(order_id)
+        time.sleep(3)
+        
+        if current_order[0].status=='0' :
+            print('卖出委托{}，数量{}，委托跌停价{}'.format(stock,vol,price_c))
+            break
+        time.sleep(1)
+        current_time = time.strftime('%H%M%S')
+        print('委托失败，继续委托',current_time)
+    
+    print('sell夜市委托结束')
+```
+
+
+
+## 1分钟涨幅大于4%-padas计算
+
+```py
+import time
+import pandas as pd
+import math
+
+
+def initialize(context):
+    g.stocks = []
+
+def before_trading_start(context, data):
+    stocks = get_Ashares()
+    #print(len(stocks))
+    #去除所有ST,停牌，退市
+    st_status = get_stock_status(stocks, 'ST')
+    halt_status = get_stock_status(stocks, 'HALT')
+    delisting_status = get_stock_status(stocks, 'DELISTING')
+
+    for j in stocks.copy():
+        if st_status[j] or halt_status[j] or delisting_status[j] :
+            stocks.remove(j) 
+    g.stocks = stocks
+    
+def handle_data(context, data):
+    datas = get_history(1, frequency='1m', field=['open','close'], security_list=g.stocks,include=True)
+    #print(datas)
+    
+    # 计算差值并除以open列
+    datas['change_ratio'] = (datas['close'] - datas['open']) / datas['open']
+
+    # 筛选出change_ratio大于0.04的行
+    filtered_df = datas[datas['change_ratio'] > 0.04]
+
+    # 提取满足条件的code列
+    codes = filtered_df['code']
+
+    # 将code列转换为列表
+    stockdata = codes.tolist()
+    print('1分钟涨跌幅>4的个股：',len(stockdata),stockdata)
+```
+
+
+
+## 当天换手率和流通市值
+
+```python
+import time
+'''
+当天换手率的计算公式：当日成交量（股数）/流通股数*100%
+当天流通市值的计算公式：当日收盘价*流通股数
+'''
+
+def initialize(context):
+    pass
+
+
+def before_trading_start(context, data):
+    stocklist = ['300399.SZ']
+    current_time = time.strftime('%Y%m%d')
+    # get_fundamentals()只能获取前一天的流通市值和换手率，'a_floats'是流通股数，由于长期不变，所以用来计算当日流通市值和换手率
+    df = get_fundamentals(stocklist, 'valuation', date = current_time, fields = ['float_value','turnover_rate','a_floats'])
+    print('通过财务接口获取的流通市值和换手率：',df['float_value'][0],df['turnover_rate'][0])
+    
+    
+    
+    for i in stocklist:
+        # 通过get_history()取当天收盘价和成交数量，获取当天的流通市值和换手率
+        df2 = get_history(1,'1d',['close','volume'],i,fq='pre',include=True)
+        
+        f_value = df['a_floats'][i]*df2['close'][0]
+        print('当天流通市值：',f_value)
+    
+        print('当天成交数量：',df2['volume'][0])
+    
+        t_rate = 100*df2['volume'][0]/df['a_floats'][i]
+        print('当天换手率：',t_rate)
+
+
+def handle_data(context, data):
+    pass
+```
+
+
+
+## 发送邮箱信息示例
+
+```python
+def initialize(context):
+    g.security = '600570.SS'
+    set_universe(g.security)
+    g.stock = ['测试','600570.SS','000001.SZ']
+    
+    run_daily(context, D_stock, time='11:38')
+
+def handle_data(context, data):
+    pass
+
+
+def D_stock(context):
+    send_email('369375161@qq.com', ['369375161@qq.com','812922126@qq.com'], 'smtp授权码',info=g.stock)
+```
+
+
+
+## 换手率计算示例
+
+```python
+import time
+def initialize(context):
+    pass
+    
+    
+def before_trading_start(context, data):
+    stocks = get_Ashares()
+    #stocks = ['002427.SZ','688757.SS']
+    
+    #获取换手率大于10的个股：
+    stocks = turnover_limit(stocks)
+    print(len(stocks))
+    print(stocks)
+
+
+def turnover_limit(stocklist):
+    if stocklist :
+        current_time = time.strftime('%Y%m%d')
+        df = get_fundamentals(stocklist, 'valuation', date = current_time, fields = ['turnover_rate'])
+        stock = []
+        for i in stocklist :
+            if df['turnover_rate'][i] > 10:
+                stock.append(i)
+                
+                #print(i,df['turnover_rate'][i])
+        return stock
+    else :
+        return []
+```
+
+
+
+## 获取昨日大盘成交量示例
+
+```python
+def initialize(context):
+    # 初始化策略
+    pass
+    
+    
+def before_trading_start(context, data):
+    vol = trade_vol()  #大盘成交量
+    print('昨日大盘成交量：',str(vol)+'万亿')
+
+def trade_vol():
+    # 获取大盘成交量，取当日用include=True
+    vol_data = get_history(1, '1d', 'money', ['000001.SS','399001.SZ'], fq=None, include=False)
+    sh_vol = vol_data['money'][0]
+    sz_vol = vol_data['money'][1]
+    tol_vol = round((sh_vol + sz_vol)/1000000000000,2)
+    return tol_vol
+```
+
+
+
+## 获取昨日涨停个股及一板个股示例
+
+```python
+def initialize(context):
+    # 初始化策略
+    pass
+    
+    
+def before_trading_start(context, data):
+    #去除所有ST,停牌，退市
+    stocks = remove(get_Ashares())
+    #stocks = ['002427.SZ','603285.SS']
+    
+    
+    stock_list = []
+    one_list = []
+    for i in stocks :
+        codeData = get_history(2,'1d',['close', 'high_limit'],i,fq='pre',include=False)
+        #print(len(codeData),codeData)
+        if len(codeData) < 2 :
+            continue
+        if codeData['close'][1] == codeData['high_limit'][1]:
+            stock_list.append(i)
+            if codeData['close'][0] != codeData['high_limit'][0]:
+                one_list.append(i)
+    print('昨日涨停：',len(stock_list))
+    print('昨日一板：',len(one_list),one_list)
+
+    
+
+def handle_data(context, data):
+    pass
+
+
+def remove(stocks):
+    #去除所有ST,停牌，退市
+    st_status = get_stock_status(stocks, 'ST')
+    halt_status = get_stock_status(stocks, 'HALT')
+    delisting_status = get_stock_status(stocks, 'DELISTING')
+
+    for j in stocks.copy():
+        if st_status[j] or halt_status[j] or delisting_status[j] :
+            stocks.remove(j)    
+    return stocks
+    #print('成功剔除所有ST、停牌，退市的股票，股票数量：',len(stocks))
+```
+
+
+
+## 去除股价大于50的股票示例
+
+```python
+import pandas as pd
+import numpy as np
+
+def initialize(context):
+    g.stocks = []
+    
+def before_trading_start(context, data):
+    g.stocks = get_Ashares()
+    price_choice()
+    print(len(g.stocks),g.stocks)
+    
+def price_choice():
+    price_dict=get_history(1, '1d', 'close',g.stocks, fq='pre',include=True,fill='pre')
+    #对数据进行处理，最终去除股价大于50的股票
+    for i in g.stocks.copy():
+        close_dict = price_dict[price_dict["code"].isin([i])]
+        price_close = close_dict["close"]
+        if price_close.item() > 50 :
+            g.stocks.remove(i)
+
+def handle_data(context, data):
+    pass
+```
+
+
+
+## 剔除ST、停牌、退市，代码示例示例
+
+```
+def initialize(context):
+    # 初始化策略
+    pass
+    
+    
+def before_trading_start(context, data):
+    stocks = get_Ashares()
+    print(len(stocks))
+    #去除所有ST,停牌，退市
+    st_status = get_stock_status(stocks, 'ST')
+    halt_status = get_stock_status(stocks, 'HALT')
+    delisting_status = get_stock_status(stocks, 'DELISTING')
+
+    for j in stocks.copy():
+        if st_status[j] or halt_status[j] or delisting_status[j] :
+            stocks.remove(j)    
+   
+    print('成功剔除所有ST、停牌，退市的股票，股票数量：',len(stocks))
+
+def handle_data(context, data):
+    pass
+```
+
+
+
+## 单因子策略
+
+```python
+"""
+策略名称：
+单因子日线交易策略
+策略流程：
+盘前将中小板成分股中st、停牌、退市的股票过滤得到股票池
+盘中：
+1、通过极值处理、标准化处理、市值中性化处理
+2、因子排序获得股票池
+3、动态平衡仓位
+注意事项：
+策略中调用的order_target_value接口的使用有场景限制，回测可以正常使用，交易谨慎使用。
+回测场景下撮合是引擎计算的，因此成交之后持仓信息的更新是瞬时的，但交易场景下信息的更新依赖于柜台数据
+的返回，无法做到瞬时同步，可能造成重复下单。详细原因请看帮助文档。
+"""
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+import math
+from decimal import Decimal
+
+
+# 初始化处理
+def initialize(context):
+    g.factor = 'roe'
+    g.factor_params_info = {
+        'roe': ['profit_ability', 'roe', False],  # 净资产收益率,最后布尔值为排序方式
+        'operating_revenue_grow_rate': ['growth_ability', 'operating_revenue_grow_rate', False],
+        # 营收增速
+        'np_parent_company_cut_yoy': ['growth_ability', 'np_parent_company_cut_yoy', False],
+        # 扣非净利润增速
+    }
+    # 初始化此策略
+    set_params()  # 设置策参数
+    set_variables()  # 设置中间变量
+    if not is_trade():
+        set_backtest()  # 设置回测条件
+
+
+# 设置策参数
+def set_params():
+    g.tc = 15  # 调仓频率
+    g.yb = 63  # 样本长度
+    g.N = 20  # 持仓数目
+    g.NoF = 3  # 三因子模型
+    g.percent = 0.10
+
+
+# 设置中间变量
+def set_variables():
+    g.days = 0  # 记录连续回测天数
+    g.rf = 0.04  # 无风险利率
+    g.is_trade = False  # 当天是否交易
+    g.every_stock = 0
+
+
+# 设置回测条件
+def set_backtest():
+    set_limit_mode('UNLIMITED')
+
+
+# 盘前处理
+def before_trading_start(context, data):
+    g.current_date = context.blotter.current_dt.strftime("%Y%m%d")
+    # g.all_stocks = get_index_stocks('000906.XBHS', g.current_date)
+    g.all_stocks = get_index_stocks('000300.XBHS', g.current_date)
+    if g.days % g.tc == 0:
+        # 每g.tc天，交易一次行
+        g.is_trade = True
+        # 将ST、停牌、退市三种状态的股票剔除当日的股票池
+        g.all_stocks = filter_stock_by_status(g.all_stocks, filter_type=["ST", "HALT", "DELISTING"], query_date=None)
+    g.days += 1
+
+
+# 每天交易时要做的事情
+def handle_data(context, data):
+    if g.is_trade:
+        stock_sort = get_stocks(g.all_stocks, str(get_trading_day(-1)), g.factor)
+        # 把涨停状态的股票剔除
+        up_limit_stock = get_limit_stock(context, stock_sort)['up_limit']
+        stock_sort = [stock for stock in stock_sort if stock not in up_limit_stock]
+        position_list = get_position_list(context)
+        # 持仓中跌停的股票不做卖出
+        limit_info = get_limit_stock(context, position_list)
+        hold_down_limit_stock = limit_info['down_limit']
+        log.info('持仓跌停股：%s' % hold_down_limit_stock)
+        # 持仓中除了不处于前g.N且跌停不能卖的股票进行卖出
+        sell_stocks = list(set(position_list) - set(stock_sort[:g.N]) - set(hold_down_limit_stock))
+        # 对不在换仓列表中且飞跌停股的股票进行卖出操作
+        order_stock_sell(context, data, sell_stocks)
+        # 获取仍在持仓中的股票
+        position_list = get_position_list(context)
+        # 获取调仓买入的股票
+        buy_stocks = [stock for stock in stock_sort if stock not in position_list][:(g.N - len(position_list))]
+        # 仓位动态平衡的股票
+        balance_stocks = list(set(buy_stocks + position_list) - set(hold_down_limit_stock))
+        log.info('balance_stocks%s' % len(balance_stocks))
+        g.every_stock = context.portfolio.portfolio_value / g.N
+        log.info('g.every_stock%s' % g.every_stock)
+        order_stock_balance(context, data, balance_stocks)
+        order_stock_balance(context, data, balance_stocks)
+    g.is_trade = False
+
+
+# 不在换仓目标中且没有跌停的股票进行清仓操作
+def order_stock_sell(context, data, sell_stocks):
+    # 对于不需要持仓的股票，全仓卖出
+    for stock in sell_stocks:
+        stock_sell = stock
+        order_target_value(stock_sell, 0)
+
+
+# 非跌停的换仓目标股进行仓位再平衡
+def order_stock_balance(context, data, balance_stocks):
+    for stock in balance_stocks:
+        order_target_value(stock, g.every_stock)
+
+
+# 获取拟持仓股票池
+def get_stocks(stocks, date, factor):
+    sort_type = g.factor_params_info[factor][-1]
+    df = get_factor_values(stocks, factor, date, g.factor_params_info)
+    df.dropna(inplace=True)
+    if df.empty:
+        print('%s数据获取失败，选股失败' % factor)
+        return list()
+    # 3倍标准差去极值
+    df = winsorize(df, factor, std=3, have_negative=True)
+    # z标准化
+    df = standardize(df, factor, ty=2)
+    # 市值中性化
+    market_cap_df = get_fundamentals(stocks, 'valuation', fields='total_value', date=date)
+    market_cap_df.dropna(inplace=True)
+    if market_cap_df.empty:
+        print('市值数据获取失败，选股失败')
+        return list()
+    market_cap_df = market_cap_df[['total_value']]
+    # 中性化处理
+    df = neutralization(df, factor, market_cap_df)
+    df = df.sort_values(by=factor, ascending=sort_type)
+    return list(df.head(int(len(df) * g.percent)).index)
+
+
+# 获取因子值
+def get_factor_values(stock_list, factor, date, factor_params_info):
+    """
+    获取因子值方法
+    入参：
+    1、股票池：stock_list
+    2、因子名称：factor
+    3、计算日期：date
+    4、因子数据获取需要维护的信息（因子名称、表名、字段名）
+    """
+    data = get_fundamentals(stock_list, table=factor_params_info[factor][0], fields=factor_params_info[factor][1],
+                            date=date, is_dataframe=True)
+    factor_info = {}
+    for stock in stock_list.copy():
+        if stock not in data.index:
+            continue
+        factor_info[stock] = data.loc[stock, factor_params_info[factor][1]]
+    if factor_info == {}:
+        return pd.DataFrame()
+    factor_df = pd.DataFrame.from_dict(factor_info, orient='index')
+    factor_df.columns = [factor_params_info[factor][1]]
+    return factor_df
+
+
+# 保留小数点两位
+def replace(x):
+    x = Decimal(x)
+    x = float(str(round(x, 2)))
+    return x
+
+
+# 生成昨日持仓股票列表
+def get_position_list(context):
+    position_last_list = [
+        position.sid
+        for position in context.portfolio.positions.values()
+        if position.amount != 0
+    ]
+    return position_last_list
+
+
+# 日级别回测获取持仓中不能卖出的股票(涨停就不卖出)
+def get_limit_stock(context, stock_list):
+    out_info = {'up_limit': [], 'down_limit': []}
+    for stock in stock_list:
+        limit_status = check_limit(stock)[stock]
+        if limit_status == 1:
+            out_info['up_limit'].append(stock)
+        elif limit_status == -1:
+            out_info['down_limit'].append(stock)
+    return out_info
+
+
+# 去极值函数（3倍标准差去极值）
+def winsorize(factor_data, factor, std=3, have_negative=True):
+    """
+    去极值函数
+    factor:以股票code为index，因子值为value的Series
+    std为几倍的标准差，have_negative 为布尔值，是否包括负值
+    输出Series
+    """
+    r = factor_data[factor]
+    if not have_negative:
+        r = r[r >= 0]
+    # 取极值
+    edge_up = r.mean() + std * r.std()
+    edge_low = r.mean() - std * r.std()
+    r[r > edge_up] = edge_up
+    r[r < edge_low] = edge_low
+    r = pd.DataFrame(r)
+    return r
+
+
+# z－score标准化函数：
+def standardize(factor_data, factor, ty=2):
+    """
+    s为Series数据
+    ty为标准化类型:1 MinMax,2 Standard,3 maxabs
+    """
+    temp = factor_data[factor]
+    re = 0
+    if int(ty) == 1:
+        re = (temp - temp.min()) / (temp.max() - temp.min())
+    elif ty == 2:
+        re = (temp - temp.mean()) / temp.std()
+    elif ty == 3:
+        re = temp / 10 ** np.ceil(np.log10(temp.abs().max()))
+    return pd.DataFrame(re)
+
+
+# 市值中性化函数
+def neutralization(data_factor, factor, data_market_cap):
+    data_market_cap['total_value2'] = 0
+    data_market_cap['total_value2'] = data_market_cap['total_value'].apply(lambda a: math.log(a))
+    df = pd.concat([data_factor, data_market_cap], axis=1, join='inner')
+    y = df[factor]
+    x = df['total_value2']
+    result = sm.OLS(y, x).fit()
+    result = pd.DataFrame(result.resid)
+    result.columns = [g.factor]
+    return result
+```
+
+
+
+## 二八轮动策略
+
+```python
+"""
+策略名称：
+二八轮动策略
+运行周期:
+日线
+策略流程：
+策略通过计算沪深300、中证500的阶段动量数据，来决定持有沪深300ETF还是中证500ETF还是货币基金
+持有至少10天
+注意事项：
+策略中调用的order_target接口的使用有场景限制，回测可以正常使用，交易谨慎使用。
+回测场景下撮合是引擎计算的，因此成交之后持仓信息的更新是瞬时的，但交易场景下信息的更新依赖于柜台数据
+的返回，无法做到瞬时同步，可能造成重复下单。详细原因请看帮助文档。
+"""
+
+
+# 初始化
+def initialize(context):
+    set_params()
+    g.signal = 0
+    g.open_date = get_trading_day(-40)
+    # 基金池: 沪深300，中证500，货币基金
+    g.fund_list = ['000300.SS', '510300.SS',
+                   '000905.SS', '510500.SS',
+                   '511880.SS', '511880.SS']
+
+    if not is_trade():
+        set_backtest()  # 设置回测条件
+
+
+# 设置策略参数
+def set_params():
+    g.N = 20  # N日涨幅
+    g.holding_days = 10  # 至少持有天数（交易日）
+    g.rise_threshold = 0  # 涨幅阈值
+
+
+# 设置回测条件
+def set_backtest():
+    set_limit_mode('UNLIMITED')
+    set_commission(commission_ratio=0.00015, min_commission=5.0)
+
+
+def before_trading_start(context, data):
+    current_date = context.blotter.current_dt.strftime('%Y%m%d')
+    # 2005-05-01前回测由于数据不足，不执行。
+    if current_date < '20050501':
+        g.trade_flag = False
+    else:
+        g.trade_flag = True
+
+
+# 盘中处理
+def handle_data(context, data):
+    if not g.trade_flag:
+        return
+    # 产生信号并交易
+    g.signal = create_signal(g.fund_list, g.N, g.rise_threshold)
+    trade(context, g.signal, g.fund_list, g.holding_days)
+    return
+
+
+# 交易函数
+def trade(context, signal, security_round_list, holding_days):
+    security_round_num = int(len(security_round_list) / 2)  # 轮动组数
+    pre_trading_date = get_trading_day(-holding_days - 1)
+    days = (g.open_date - pre_trading_date).days
+    if days > 0:
+        return
+    hold = set(context.portfolio.positions.keys())
+    if signal == 0:  # 买货币基金
+        to_buy = {security_round_list[(security_round_num - 1) * 2 + 1]}
+    else:
+        to_buy = {security_round_list[(signal - 1) * 2 + 1]}
+    sell = hold - to_buy
+    buy = to_buy - hold
+    if sell:
+        order_target(list(sell)[0], 0)
+    if buy:
+        target_value = context.portfolio.cash
+        order_value(list(buy)[0], target_value)
+        g.open_date = context.current_dt.date()
+    return
+
+
+# 产生信号，返回signal
+def create_signal(fund_list, num, rise_threshold):
+    price_rise = [0, 0, 0, 0]
+    max_rise_index = 0  # 涨幅最大的指数
+    price_rise_max = -999999  # 价格涨幅
+    security_round_num = int(len(fund_list) / 2)  # 轮动组数
+    # 货币基金不参与计算信号
+    for i in range(security_round_num - 1):
+        stock = fund_list[i * 2]
+        his_data = get_history(num + 1, frequency='1d', field='close', security_list=stock, fq=None,
+                               include=False, is_dict=True)
+        price_rise[i] = his_data[stock]['close'][-1] / his_data[stock]['close'][-num - 1] - 1  # N日涨幅
+        if price_rise[i] > price_rise_max:
+            max_rise_index = i
+            price_rise_max = price_rise[i]
+    if price_rise[max_rise_index] > rise_threshold:
+        signal = max_rise_index + 1
+    else:
+        signal = security_round_num
+    return signal
+```
+
+
+
+## 两融双均线策略
+
+```python
+"""
+策略名称：
+两融双均线策略
+运行周期:
+日线
+==============================================================================
+备注：该demo仅支持交易使用
+"""
+import numpy as np
+
+
+def initialize(context):
+    # 融资融券策略
+    # 初始化此策略
+    # 设置我们要操作的股票池, 这里我们只操作一支股票
+    g.security = '600570.SS'
+    # 默认买入股数
+    g.amount = 1000
+    if not is_trade():
+        log.info('两融demo策略无法在回测场景使用')
+
+
+
+def before_trading_start(context, data):
+    if not is_trade():
+        return
+    h = get_history(20, '1d', field=['close', 'volume'], security_list=g.security,
+                    fq='dypre', include=False, is_dict=True)
+    g.close_data = h[g.security]['close']
+
+
+def handle_data(context, data):
+    if not is_trade():
+        return
+    security = g.security
+    # 获取历史日K线数据
+    current_price = data[security].close
+    # 合成最新K线序列
+    close_data = np.concatenate((g.close_data, np.array(list([current_price]))), axis=0)
+    # 获取5日、10日均线
+    ma5 = get_ma(close_data, 5)
+    ma10 = get_ma(close_data, 10)
+
+    # 如果五日均线大于十日均线，进行买入
+    if ma5 > ma10:
+        # 获取最大可融资数量
+        amount = get_margincash_open_amount(security).get(security)
+        log.info('最大可融资买入的数量:%s' % amount)
+        # 可融资买入最大股数超过目标买入股数则用融资买入方式买入标的
+        if amount >= g.amount:
+            margincash_open(security, g.amount)
+            log.info('融资买入全部')
+        # 可融资买入最大股数小于目标买入股数但大于零则用先用融资买入方式买入部分，剩余部分用担保品交易方式进行买入
+        elif g.amount > amount > 0:
+            margincash_open(security, amount)
+            log.info('融资买入部分')
+            margin_trade(security, g.amount - amount)
+            log.info('担保品买入部分')
+        elif amount == 0:
+            margin_trade(security, g.amount)
+            log.info('担保品买入全部')
+        g.flag = False
+
+    # 如果五日均线小于十日均线，进行卖出
+    else:
+        hold_amount = get_position(security).enable_amount
+        if hold_amount > 0:
+            # 获取标的卖券还款最大可卖数量
+            amount = get_margincash_close_amount(security).get(security)
+            log.info('最大可卖券还款卖出的数量:%s' % amount)
+            # 如果卖券还款最大数量不小于持仓数量，则进行卖券还款操作
+            if amount >= hold_amount:
+                margincash_close(security, -amount)
+                log.info('卖券还款卖出全部')
+            # 如果卖券还款最大数量小于持仓数量，则先进行部分数量的卖券还款操作，剩余通过担保品交易卖出
+            elif hold_amount > amount > 0:
+                margincash_close(security, -amount)
+                log.info('卖券还款卖出部分')
+                margin_trade(security, -(hold_amount - amount))
+                log.info('担保品卖出部分')
+            # 如果卖券还款最大数量为零，则持仓部分用担保品方式卖出
+            elif amount == 0:
+                margin_trade(security, -hold_amount)
+                log.info('担保品卖出全部')
+
+
+# 获取MA函数
+def get_ma(close_array, num):
+    ma = close_array[-num:].mean()
+    return round(ma, 2)
+```
+
+
+
+## 猛犸策略
+
+```python
+"""
+策略名称：
+猛犸策略
+注意事项：
+策略中调用的order_target接口的使用有场景限制，回测可以正常使用，交易谨慎使用。
+回测场景下撮合是引擎计算的，因此成交之后持仓信息的更新是瞬时的，但交易场景下信息的更新依赖于柜台数据
+的返回，无法做到瞬时同步，可能造成重复下单。详细原因请看帮助文档。
+"""
+import random
+
+
+def initialize(context):
+    # 交易标的列表（该股票池中的代码仅作为demo演示，非投资建议）
+    context.universe = [
+        '002131.SZ',
+        '002736.SZ',
+        '600804.SS',
+        '000001.SZ',
+        '600376.SS',
+        '600104.SS',
+        '000630.SZ',
+        '002065.SZ',
+        '601166.SS',
+        '600875.SS',
+        '000555.SZ',
+        '601939.SS',
+        '600999.SS',
+    ]
+    g.daycount = 0
+    g.holdstocks = []
+
+
+def handle_data(context, data):
+    # 最大持仓股票支数
+    maxhold = 5
+    totalsize = len(context.universe)
+    # 取得当前的现金
+    cash = context.portfolio.cash
+    g.daycount = g.daycount + 1
+
+    if len(g.holdstocks) == 0:  # 初始状态
+        count = maxhold
+        singlemoney = cash / maxhold
+
+        while count > 0:
+            buystock = context.universe[random.randint(0, totalsize - 1)]
+            if buystock not in g.holdstocks:
+                g.holdstocks.append(buystock)
+                # 用所有 singlemoney 买入股票
+                log.info('buystock=' + buystock)
+                log.info('singlemoney=' + str(singlemoney))
+                order_value(buystock, singlemoney)
+                # 记录这次买入
+                # log.info("Buying %s" % (buystock))
+                log.info("Buying %s" % buystock)
+                count = count - 1
+                log.info('count=' + str(count))
+
+    elif g.daycount % 5 == 1:  # 5 days change
+
+        log.info('g.daycount=' + str(g.daycount))
+        # 选择过去7天表现最差的股票卖出
+        weakstock = ''
+        weak_returns = 10000
+        his_data_info = get_history(7, '1d', field=['price', 'volume'], security_list=context.universe,
+                                    fq='pre', include=False, is_dict=True)
+        halt_status = get_stock_status(context.universe, 'HALT')
+        for stock in g.holdstocks:
+            his_data = his_data_info[stock]
+            # 当日停牌跳过
+            if halt_status[stock]:
+                continue
+            if his_data.size == 0:
+                continue
+            startprice = his_data['price'][0]
+            endprice = his_data['price'][-1]
+
+            cur_returns = endprice / startprice - 1
+            # 遍历记录涨幅最小的股票
+            if cur_returns < weak_returns:
+                weak_returns = cur_returns
+                weakstock = stock
+        if weakstock == '':
+            weakstock = g.holdstocks[0]
+        sellstock = weakstock
+        log.info('weakstock=' + weakstock)
+        g.holdstocks.remove(weakstock)
+        # 卖出所有股票,使这只股票的最终持有量为0
+        order_target(sellstock, 0)
+        # 记录这次卖出
+        log.info("selling %s" % sellstock)
+
+        while True:
+            buystock = context.universe[random.randint(0, totalsize - 1)]
+            if buystock not in g.holdstocks and buystock != sellstock:
+                g.holdstocks.append(buystock)
+                # 用所有 cash 买入股票
+                log.info('buystock=' + buystock)
+                log.info('cash=' + str(cash))
+                order_value(buystock, cash)
+                # 记录这次买入
+                log.info("Buying %s" % buystock)
+                break
+```
+
+
+
+## 期货日内策略
+
+```python
+"""
+策略名称：
+期货日内交易策略
+运行周期:
+分钟
+策略流程：
+盘中每隔5分钟进行一次RSI短周期与长周期多空共振的判断，决定做开多头仓还是空头仓；
+盘中再按照盈利比例进行头寸平仓或者收盘前清算头寸平仓
+==============================================================================
+备注：该demo仅支持回测场景使用，如在交易场景使用，需要将主力合约代码，如"IF888.CCFX"
+替换为当前交易日正处理上市状态的合约代码
+"""
+# 导入函数库
+import numpy as np
+
+
+# 初始化此策略
+def initialize(context):
+    # 设置我们要操作的股票池, 这里我们只操作一支股票
+    g.ini_buy_flag = False  # 买底仓开关
+    g.amount = 1  # 1份标准交易头寸
+    g.rate = 0.5  # 做T涨跌幅，1就是1%
+    g.L = 50  # 长周期RSI阈值
+    g.S = 80  # 短周期RSI阈值
+    g.target = 'IF'  # 设置交易标的
+    g.security = g.target + '888.CCFX'  # 设置主力合约
+    log.info(g.security)
+    if not is_trade():
+        set_limit_mode('UNLIMITED')
+        set_margin_rate(g.target, 0.15)
+
+
+# 盘前处理
+def before_trading_start(context, data):
+    g.count = 0
+    g.B_T_flag = False  # 做正T开关（先买后卖）
+    g.S_T_flag = False  # 做反T开关（先卖后买）
+    g.first_buy_flag = False
+    g.second_buy_flag = False
+    g.trade_flag = True
+
+
+# 盘中处理
+def handle_data(context, data):
+    g.count += 1
+    k_num = g.count
+    if k_num <= 5:
+        return
+    # 每个5分钟整点进行做T判断
+    if k_num % 1 == 0:
+        # 获取5分钟K线数据
+        h = get_history(100, '1m', field=['close', 'volume'], security_list=g.security,
+                        fq=None, include=True, is_dict=True)
+        close_array_m = h[g.security]['close']
+        # 获取5分钟K线数据
+        h = get_history(100, '5m', field=['close', 'volume'], security_list=g.security,
+                        fq=None, include=True, is_dict=True)
+        close_array_5m = h[g.security]['close']
+
+        if close_array_m.ndim != 0 and close_array_5m.ndim != 0:
+            # 获取5分钟、15分钟RSI
+            rsi_m = get_rsi(close_array_m, 11)[-1]
+            rsi_5m = get_rsi(close_array_5m, 11)[-1]
+            # 做T条件判断
+            if rsi_5m > g.L and rsi_m > g.S:
+                if get_position(g.security).long_amount == 0 and not g.B_T_flag:
+                    order_id = buy_open(g.security, g.amount)
+                    if order_id is not None:
+                        log.info('日内看多开多头仓')
+                        log.info('========================')
+                        g.B_T_flag = True
+                        g.B_T_cost = data[g.security].price
+            if rsi_5m < 100 - g.L and rsi_m < 100 - g.S:
+                if get_position(g.security).short_amount == 0 and not g.S_T_flag:
+                    order_id = sell_open(g.security, g.amount)
+                    if order_id is not None:
+                        log.info('日内看空开空头仓')
+                        log.info('========================')
+                        log.info(get_positions())
+                        g.S_T_flag = True
+                        g.S_T_cost = data[g.security].price
+    if g.B_T_flag:
+        if data[g.security].price >= g.B_T_cost * (1 + g.rate / 100):
+            order_id = sell_close(g.security, 1)
+            if order_id is not None:
+                log.info('多头仓做T后多头仓平仓')
+                log.info('------------------------')
+                g.B_T_flag = False
+    if g.S_T_flag:
+        if data[g.security].price <= g.S_T_cost * (1 - g.rate / 100):
+            order_id = buy_close(g.security, 1)
+            if order_id is not None:
+                log.info('空头仓做T后空头仓平仓')
+                log.info('------------------------')
+                g.S_T_flag = False
+    # 收盘前多次尝试将持仓恢复到开盘持有量
+    if k_num == 238:
+        log.info('收盘前尝试将持仓恢复到开盘持有量')
+        long_pos = get_long_position_list(context)
+        short_pos = get_short_position_list(context)
+        if long_pos:
+            order_id = sell_close(g.security, 1)
+            if order_id is not None:
+                log.info('收盘多头仓清算')
+        if short_pos:
+            order_id = buy_close(g.security, 1)
+            if order_id is not None:
+                log.info('收盘空头仓清算')
+
+
+# 获取RSI数据
+def get_rsi(array_list, periods=14):
+    length = len(array_list)
+    rsi_values = [np.nan] * length
+    if length <= periods:
+        return rsi_values
+    up_avg = 0
+    down_avg = 0
+
+    first_t = array_list[:periods + 1]
+    for i in range(1, len(first_t)):
+        if first_t[i] >= first_t[i - 1]:
+            up_avg += first_t[i] - first_t[i - 1]
+        else:
+            down_avg += first_t[i - 1] - first_t[i]
+    up_avg = up_avg / periods
+    down_avg = down_avg / periods
+    rs = up_avg / down_avg
+    rsi_values[periods] = 100 - 100 / (1 + rs)
+
+    for j in range(periods + 1, length):
+        if array_list[j] >= array_list[j - 1]:
+            up = array_list[j] - array_list[j - 1]
+            down = 0
+        else:
+            up = 0
+            down = array_list[j - 1] - array_list[j]
+        up_avg = (up_avg * (periods - 1) + up) / periods
+        down_avg = (down_avg * (periods - 1) + down) / periods
+        rs = up_avg / down_avg
+        rsi_values[j] = 100 - 100 / (1 + rs)
+    return rsi_values
+
+
+# 生成持仓股票列表
+def get_long_position_list(context):
+    position_list = []
+    for code in context.portfolio.positions:
+        if context.portfolio.positions[code].long_amount != 0:
+            position_list.append(code)
+    return position_list
+
+
+# 生成持仓股票列表
+def get_short_position_list(context):
+    position_list = []
+    for code in context.portfolio.positions:
+        if context.portfolio.positions[code].short_amount != 0:
+            position_list.append(code)
+    return position_list
+```
+
+
+
+## 期货双均线策略
+
+```python
+"""
+策略名称：
+期货双均线策略
+运行周期:
+日线
+==============================================================================
+备注：该demo仅支持回测场景使用，如在交易场景使用，需要将主力合约代码，如"IF888.CCFX"
+替换为当前交易日正处理上市状态的合约代码
+"""
+import numpy as np
+
+
+def initialize(context):
+    g.target = 'IF'  # 设置交易标的
+    # 设置主力合约
+    g.security = g.target + '888.CCFX'
+    g.amount = 1
+    if not is_trade():
+        set_limit_mode('UNLIMITED')
+        set_margin_rate(g.target, 0.15)
+
+
+def before_trading_start(context, data):
+    h = get_history(20, '1d', field=['close', 'volume'], security_list=g.security,
+                    fq='dypre', include=False, is_dict=True)
+    g.close_data = h[g.security]['close']
+
+
+# 当五日均线高于十日均线时开多仓、平空仓，当五日均线低于十日均线时开空仓、平多仓
+def handle_data(context, data):
+    # 获取历史日K线数据
+    current_price = data[g.security].close
+    # 合成最新K线序列
+    close_data = np.concatenate((g.close_data, np.array(list([current_price]))), axis=0)
+    # 获取5日、10日均线
+    ma5 = get_ma(close_data, 5)
+    ma10 = get_ma(close_data, 10)
+    # 五日均线大于十日均线
+    if ma5 > ma10:
+        if get_position(g.security).long_amount == 0:
+            # 开一份多头仓
+            order_id = buy_open(g.security, g.amount)
+            log.info("开多头仓 %s" % g.security)
+        if get_position(g.security).short_amount != 0:
+            # 平一份空头仓
+            order_id = buy_close(g.security, g.amount)
+            log.info("平空头仓 %s" % g.security)
+
+    # 五日均线小于十日均线
+    elif ma5 < ma10:
+        if get_position(g.security).short_amount == 0:
+            # 开一份空头仓
+            order_id = sell_open(g.security, g.amount)
+            log.info("开空仓 %s" % g.security)
+        if get_position(g.security).long_amount != 0:
+            # 平一份多头仓
+            order_id = sell_close(g.security, g.amount)
+            log.info("平多仓 %s" % g.security)
+
+
+# 获取MA函数
+def get_ma(close_array, num):
+    ma = close_array[-num:].mean()
+    return round(ma, 2)
+```
+
+
+
+## 日内交易策略
+
+```python
+"""
+策略名称：
+单标的日内交易策略
+运行周期:
+分钟
+策略流程：
+盘中10点后每隔5分钟进行一次RSI短周期与长周期多空共振的判断，决定做正T还是反T；
+盘中再按照盈利比例进行头寸恢复或者收盘前清算头寸恢复
+注意事项：
+策略中调用的order_target接口的使用有场景限制，回测可以正常使用，交易谨慎使用。
+回测场景下撮合是引擎计算的，因此成交之后持仓信息的更新是瞬时的，但交易场景下信息的更新依赖于柜台数据
+的返回，无法做到瞬时同步，可能造成重复下单。详细原因请看帮助文档。
+"""
+# 导入函数库
+
+import numpy as np
+
+
+# 初始化此策略
+def initialize(context):
+    # 设置我们要操作的股票池, 这里我们只操作一支股票
+    g.ini_buy_flag = False  # 买底仓开关
+    g.amount = 100  # 1份标准交易头寸
+    g.rate = 1  # 做T涨跌幅，1就是1%
+    g.L = 50  # 长周期RSI阈值
+    g.S = 80  # 短周期RSI阈值
+    g.security = '510500.SS'
+    if not is_trade():
+        set_limit_mode('UNLIMITED')
+
+
+# 盘前处理
+def before_trading_start(context, data):
+    g.B_T_flag = False  # 做正T开关（先买后卖）
+    g.S_T_flag = False  # 做反T开关（先卖后买）
+    g.first_buy_flag = False
+    g.second_buy_flag = False
+    g.handle_data_flag = True
+    current_date = context.blotter.current_dt.strftime('%Y-%m-%d')
+    # 2013-04-01前510500.SS回测由于数据不足，不执行。可按照标的更改允许回测时间
+    if current_date < '2013-04-01':
+        g.trade_flag = False
+    else:
+        g.trade_flag = True
+
+
+# 盘中处理
+def handle_data(context, data):
+    if not g.trade_flag:
+        return
+    # 盘中交易开关（一天只做一次T）
+    if not g.handle_data_flag:
+        return
+    k_num = get_current_kline_count()
+    if not g.ini_buy_flag:
+        order(g.security, g.amount)
+        g.ini_buy_flag = True
+        g.handle_data_flag = False
+    if k_num <= 30:
+        return
+    # 每个5分钟整点进行做T判断
+    if k_num % 5 == 0:
+        # 获取5分钟K线数据
+        h = get_history(100, '5m', field=['close', 'volume'], security_list=g.security,
+                        fq='dypre', include=True, is_dict=True)
+        close_array_5m = h[g.security]['close']
+        # 合成15分钟K线数据
+        h = get_history(100, '15m', field=['close', 'volume'], security_list=g.security,
+                        fq='dypre', include=False, is_dict=True)
+        close_array_15m = h[g.security]['close']
+        current_price = data[g.security].close
+        close_array_15m = np.concatenate((close_array_15m, np.array(list([current_price]))), axis=0)
+        if close_array_5m.ndim != 0 and close_array_15m.ndim != 0:
+            # 获取5分钟、15分钟RSI
+            rsi_5m = get_rsi(close_array_5m, 11)[-1]
+            rsi_15m = get_rsi(close_array_15m, 11)[-1]
+            # 做T条件判断
+            if rsi_15m > g.L and rsi_5m > g.S:
+                if get_position(g.security).enable_amount == g.amount and not g.B_T_flag:
+                    order_id = order(g.security, g.amount)
+                    if order_id is not None:
+                        log.info('日内看多做正T')
+                        g.B_T_flag = True
+                        g.B_T_cost = data[g.security].price
+            if rsi_15m < 100 - g.L and rsi_5m < 100 - g.S:
+                if get_position(g.security).enable_amount == g.amount and not g.S_T_flag:
+                    order_id = order(g.security, -g.amount)
+                    if order_id is not None:
+                        log.info('日内看空做反T')
+                        g.S_T_flag = True
+                        g.S_T_cost = data[g.security].price
+    if g.B_T_flag:
+        if data[g.security].price >= g.B_T_cost * (1 + g.rate / 100):
+            order_id = order(g.security, -g.amount)
+            if order_id is not None:
+                log.info('做正T后恢复头寸')
+                g.B_T_flag = False
+    if g.S_T_flag:
+        if data[g.security].price <= g.S_T_cost * (1 - g.rate / 100):
+            order_id = order(g.security, g.amount)
+            if order_id is not None:
+                log.info('做反T后恢复头寸')
+                g.S_T_flag = False
+    # 收盘前多次尝试将持仓恢复到开盘持有量
+    if k_num >= 238:
+        log.info('收盘前多次尝试将持仓恢复到开盘持有量')
+        order_id = order_target(g.security, g.amount)
+        if order_id is not None:
+            log.info('收盘清算')
+
+
+# 获取RSI数据
+def get_rsi(array_list, periods=14):
+    length = len(array_list)
+    rsi_values = [np.nan] * length
+    if length <= periods:
+        return rsi_values
+    up_avg = 0
+    down_avg = 0
+
+    first_t = array_list[:periods + 1]
+    for i in range(1, len(first_t)):
+        if first_t[i] >= first_t[i - 1]:
+            up_avg += first_t[i] - first_t[i - 1]
+        else:
+            down_avg += first_t[i - 1] - first_t[i]
+    up_avg = up_avg / periods
+    down_avg = down_avg / periods
+    rs = up_avg / down_avg
+    rsi_values[periods] = 100 - 100 / (1 + rs)
+
+    for j in range(periods + 1, length):
+        if array_list[j] >= array_list[j - 1]:
+            up = array_list[j] - array_list[j - 1]
+            down = 0
+        else:
+            up = 0
+            down = array_list[j - 1] - array_list[j]
+        up_avg = (up_avg * (periods - 1) + up) / periods
+        down_avg = (down_avg * (periods - 1) + down) / periods
+        rs = up_avg / down_avg
+        rsi_values[j] = 100 - 100 / (1 + rs)
+    return rsi_values
+```
+
+
+
+## 三因子策略
+
+```python
+"""
+策略名称：
+三因子日线交易策略
+运行周期:
+日线
+策略流程：
+盘前将中小板成分股中st、停牌、退市的股票过滤得到股票池
+盘中：
+1、获取市场风险溢价、市值因子、账面市值比因子三因子数据，
+2、分组差值做线性回归处理，最终得到得分，选择得分高的标的调仓买入
+3、每15天换仓一次
+注意事项：
+策略中调用的order_target_value接口的使用有场景限制，回测可以正常使用，交易谨慎使用。
+回测场景下撮合是引擎计算的，因此成交之后持仓信息的更新是瞬时的，但交易场景下信息的更新依赖于柜台数据
+的返回，无法做到瞬时同步，可能造成重复下单。详细原因请看帮助文档。
+"""
+# 导入函数库
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+from statsmodels import regression
+from decimal import Decimal
+
+
+# 初始化此策略
+def initialize(context):
+    g.factor_params_info = {
+        'total_shareholder_equity': ['balance_statement', 'total_shareholder_equity'],
+        'roe': ['profit_ability', 'roe']
+    }
+    set_params()  # 设置策参数
+    set_variables()  # 设置中间变量
+    if not is_trade():
+        set_backtest()  # 设置回测条件
+
+
+# 设置策参数
+def set_params():
+    g.tc = 15  # 调仓频率
+    g.yb = 63  # 样本长度
+    g.N = 10  # 持仓数目
+    g.NoF = 3  # 三因子模型
+
+
+# 设置中间变量
+def set_variables():
+    g.t = 0  # 记录连续回测天数
+    g.rf = 0.04  # 无风险利率
+    g.if_trade = False  # 当天是否交易
+
+
+# 设置回测条件
+def set_backtest():
+    set_limit_mode('UNLIMITED')
+
+
+# 每天盘前处理
+def before_trading_start(context, data):
+    g.current_date = context.blotter.current_dt.strftime("%Y%m%d")
+    # 2005-06-01前回测由于数据不足，不执行。
+    if g.current_date < '20050601':
+        g.trade_flag = False
+    else:
+        g.trade_flag = True
+
+    g.rf = 0.04
+    g.all_stocks = get_index_stocks('000300.XBHS', g.current_date)
+
+    if g.t % g.tc == 0:
+        # 每隔g.tc天，交易一次
+        g.if_trade = True
+        # 将ST、停牌、退市三种状态的股票剔除当日的股票池
+        g.all_stocks = filter_stock_by_status(g.all_stocks, filter_type=["ST", "HALT", "DELISTING"], query_date=None)
+    g.t += 1
+
+
+# 每天交易时要做的事情
+def handle_data(context, data):
+    if not g.trade_flag:
+        return
+
+    if g.if_trade:
+        df_scores = get_scores(g.all_stocks, str(get_trading_day(-63)), str(get_trading_day(-1)), g.rf)
+        # 为每个持仓股票分配资金
+        # 依打分排序，当前需要持仓的股票
+        if df_scores.empty:
+            stock_sort = list()
+        else:
+            stock_sort = df_scores.sort_values('score')['code'].tolist()
+        # 把涨停状态的股票剔除
+        up_limit_stock = get_limit_stock(stock_sort)['up_limit']
+        # stock_sort = list(set(stock_sort)-set(up_limit_stock))
+        stock_sort = [stock for stock in stock_sort if stock not in up_limit_stock]
+        position_list = get_position_list(context)
+        # 持仓中跌停的股票不做卖出
+        limit_info = get_limit_stock(position_list)
+        hold_down_limit_stock = limit_info['down_limit']
+        log.info('持仓跌停股：%s' % hold_down_limit_stock)
+        position_list = get_position_list(context)
+        # 持仓中除了不处于前g.N且跌停不能卖的股票进行卖出
+        sell_stocks = list(set(position_list) - set(stock_sort[:g.N]) - set(hold_down_limit_stock))
+        # 对不在换仓列表中且飞跌停股的股票进行卖出操作
+        order_stock_sell(sell_stocks)
+        # 获取仍在持仓中的股票
+        position_list = get_position_list(context)
+        # 获取调仓买入的股票
+        buy_stocks = [stock for stock in stock_sort if stock not in position_list][:(g.N - len(position_list))]
+        # 仓位动态平衡的股票
+        balance_stocks = list(set(buy_stocks + position_list) - set(hold_down_limit_stock))
+        every_stock = context.portfolio.portfolio_value / g.N
+        order_stock_balance(balance_stocks, every_stock)
+        order_stock_balance(balance_stocks, every_stock)
+    g.if_trade = False
+
+
+# 不在换仓目标中且没有跌停的股票进行清仓操作
+def order_stock_sell(sell_stocks):
+    # 对于不需要持仓的股票，全仓卖出
+    for stock in sell_stocks:
+        order_target_value(stock, 0)
+
+
+# 非跌停的换仓目标股进行仓位再平衡
+def order_stock_balance(balance_stocks, every_stock):
+    for stock in balance_stocks:
+        order_target_value(stock, every_stock)
+
+
+# 获取综合得分
+def get_scores(stocks, begin, end, rf):
+    try:
+        length = len(stocks)
+        market_cap_df = get_fundamentals(stocks, 'valuation', fields='total_value', date=begin)
+        market_cap_df.dropna(inplace=True)
+        if market_cap_df.empty:
+            print('获取市值数据失败，股票因子评分失败')
+            return pd.DataFrame()
+        total_shareholder_equity_df = get_factor_values(stocks, 'total_shareholder_equity', begin, g.factor_params_info)
+        total_shareholder_equity_df.dropna(inplace=True)
+        if total_shareholder_equity_df.empty:
+            print('获取total_shareholder_equity财务数据失败，股票因子评分失败')
+            return pd.DataFrame()
+        roe_df = get_factor_values(stocks, 'roe', begin, g.factor_params_info)
+        roe_df.dropna(inplace=True)
+        if roe_df.empty:
+            print('获取roe财务数据失败，股票因子评分失败')
+            return pd.DataFrame()
+        df_all = pd.concat([market_cap_df, total_shareholder_equity_df, roe_df], axis=1)
+        df_all.dropna(inplace=True)
+        df_all['BTM'] = df_all['total_shareholder_equity'] / df_all['total_value']
+        df_all = df_all.reset_index()
+        S = df_all.sort_values('total_value')['index'][:int(length / 3)]
+        B = df_all.sort_values('total_value')['index'][length - int(length / 3):]
+        L = df_all.sort_values('BTM')['index'][:int(length / 3)]
+        H = df_all.sort_values('BTM')['index'][length - int(length / 3):]
+        W = df_all.sort_values('roe')['index'][:int(length / 3)]
+        R = df_all.sort_values('roe')['index'][length - int(length / 3):]
+
+        close_data = get_price(stocks, begin, end, fields='close', frequency='1d', is_dict=True)
+
+        close_df = pd.DataFrame()
+        for stock_code, stock_data in close_data.items():
+            date_info = pd.to_datetime(stock_data['datetime'], format='%Y%m%d')
+            close_info = stock_data['close']
+            close_df[stock_code] = pd.Series(close_info, index=date_info)
+        close_df.sort_index(inplace=True)
+        df = np.diff(np.log(close_df), axis=0) + 0 * close_df[1:]
+        SMB = df[S].T.sum() / len(S) - df[B].T.sum() / len(B)
+        HML = df[H].T.sum() / len(H) - df[L].T.sum() / len(L)
+        RMW = df[R].T.sum() / len(R) - df[W].T.sum() / len(W)
+        dp = get_price('000300.XSHG', begin, end, '1d')['close']
+        if len(dp)-len(df)>1:
+            log.info('历史行情数据缺失，股票因子评分失败')
+            return pd.DataFrame()
+        RM = np.diff(np.log(dp)) - rf / 252
+        X = pd.DataFrame({"RM": RM, "SMB": SMB, "HML": HML, "RMW": RMW})
+        factor_flag = ["RM", "SMB", "HML", "RMW"][:g.NoF]
+        X = X[factor_flag]
+        t_scores = [0.0] * length
+        for i in range(length):
+            t_stock = stocks[i]
+            t_r = linreg(X, df[t_stock] - rf / 252, len(factor_flag))
+            t_scores[i] = t_r[0]
+        scores = pd.DataFrame({'code': stocks, 'score': t_scores})
+        df_scores = scores.sort_values(by='score')
+        return df_scores
+    except:
+        print('股票因子评分失败，请检查数据')
+        return pd.DataFrame()
+
+
+# 获取因子值
+def get_factor_values(stock_list, factor, date, factor_params_info):
+    """
+    获取因子值方法
+    入参：
+    1、股票池：stock_list
+    2、因子名称：factor
+    3、计算日期：date
+    4、因子数据获取需要维护的信息（因子名称、表名、字段名）
+    """
+    data = get_fundamentals(stock_list, table=factor_params_info[factor][0], fields=factor_params_info[factor][1],
+                            date=date, is_dataframe=True)
+    factor_info = {}
+    for stock in stock_list.copy():
+        if stock not in data.index:
+            continue
+        factor_info[stock] = data.loc[stock, factor_params_info[factor][1]]
+    if factor_info == {}:
+        return pd.DataFrame()
+    factor_df = pd.DataFrame.from_dict(factor_info, orient='index')
+    factor_df.columns = [factor_params_info[factor][1]]
+    return factor_df
+
+
+# 线性回归
+def linreg(x, y, columns=3):
+    x = sm.add_constant(np.array(x))
+    y = np.array(y)
+    if len(y) > 1:
+        results = regression.linear_model.OLS(y, x).fit()
+        return results.params
+    else:
+        return [float("nan")] * (columns + 1)
+
+
+# 保留小数点两位
+def replace(x):
+    x = Decimal(x)
+    x = float(str(round(x, 2)))
+    return x
+
+
+# 生成昨日持仓股票列表
+def get_position_list(context):
+    return [
+        position.sid
+        for position in context.portfolio.positions.values()
+        if position.amount != 0
+    ]
+
+
+# 日级别回测获取持仓中不能卖出的股票(涨停就不卖出)
+def get_limit_stock(stock_list):
+    out_info = {'up_limit': [], 'down_limit': []}
+    for stock in stock_list:
+        limit_status = check_limit(stock)[stock]
+        if limit_status == 1:
+            out_info['up_limit'].append(stock)
+        elif limit_status == -1:
+            out_info['down_limit'].append(stock)
+    return out_info
+```
+
+
+
+## 双均线策略
+
+```python
+"""
+策略名称：
+双均线策略
+注意事项：
+策略中调用的order_target接口的使用有场景限制，回测可以正常使用，交易谨慎使用。
+回测场景下撮合是引擎计算的，因此成交之后持仓信息的更新是瞬时的，但交易场景下信息的更新依赖于柜台数据
+的返回，无法做到瞬时同步，可能造成重复下单。详细原因请看帮助文档。
+"""
+import numpy as np
+
+
+def initialize(context):
+    # 初始化此策略
+    g.security = '600570.SS'
+
+
+def before_trading_start(context, data):
+    h = get_history(20, '1d', field=['close', 'volume'], security_list=g.security,
+                    fq='dypre', include=False, is_dict=True)
+    g.close_data = h[g.security]['close']
+
+
+# 当五日均线高于十日均线时买入，当五日均线低于十日均线时卖出
+def handle_data(context, data):
+    # 获取历史日K线数据
+    current_price = data[g.security].close
+    # 合成最新K线序列
+    close_data = np.concatenate((g.close_data, np.array(list([current_price]))), axis=0)
+    # 获取5日、10日均线
+    ma5 = get_ma(close_data, 5)
+    ma10 = get_ma(close_data, 10)
+    # 得到当前资金余额
+    cash = context.portfolio.cash
+    # 如果当前有余额，并且五日均线大于十日均线
+    if ma5 > ma10 and get_position(g.security).amount == 0:
+        # 用所有 cash 买入股票
+        order_value(g.security, cash)
+        # 记录这次买入
+        log.info("Buying %s" % g.security)
+
+    # 如果五日均线小于十日均线，并且目前有头寸
+    elif ma5 < ma10 and get_position(g.security).enable_amount > 0:
+        # 全部卖出
+        order_target(g.security, 0)
+        # 记录这次卖出
+        log.info("Selling %s" % g.security)
+
+
+# 获取MA函数
+def get_ma(close_array, num):
+    ma = close_array[-num:].mean()
+    return round(ma, 2)
+```
+
+
+
+## 小市值策略
+
+```python
+"""
+策略名称：
+小市值日线交易策略
+运行周期:
+日线
+策略流程：
+盘前将中小板综成分股中st、停牌、退市的股票过滤得到股票池
+盘中换仓，始终持有当日流通市值最小的股票（涨停标的不换仓）。
+注意事项：
+策略中调用的order_target_value接口的使用有场景限制，回测可以正常使用，交易谨慎使用。
+回测场景下撮合是引擎计算的，因此成交之后持仓信息的更新是瞬时的，但交易场景下信息的更新依赖于柜台数据
+的返回，无法做到瞬时同步，可能造成重复下单。详细原因请看帮助文档。
+"""
+
+
+# 初始化
+def initialize(context):
+    # 设置基准指数
+    set_benchmark("000300.XSHG")
+    # 股票池对应指数代码
+    g.index = "399101.XBHS"  # 中小板综
+    # 持有股票数量
+    g.buy_stock_count = 5
+    # 筛选股票数量
+    g.screen_stock_count = 10
+    if not is_trade():
+        set_backtest()  # 设置回测条件
+
+
+# 设置回测条件
+def set_backtest():
+    set_limit_mode("UNLIMITED")
+
+
+# 盘前处理
+def before_trading_start(context, data):
+    g.pre_position_list = list(get_positions().keys())
+    g.stock_list = get_index_stocks(g.index)
+    # 指数成分股按昨日收盘时的流通市值进行从小到大排序，截取市值最小的100个标的进行股票状态筛选（考虑回测速度）
+    df = get_fundamentals(g.stock_list, "valuation", fields=["total_value", "a_floats", "float_value"],
+                          date=context.previous_date).sort_values(by="float_value").head(100)
+    stock_list_tmp = df.index.tolist()
+    # 将ST、停牌、退市三种状态的股票剔除当日的股票池
+    stock_list_tmp = filter_stock_by_status(stock_list_tmp, filter_type=["ST", "HALT", "DELISTING"], query_date=None)
+    # 保留状态筛选后的股票，并取其中流通市值最小的10个股票
+    df = df[df.index.isin(stock_list_tmp)]
+    g.df = df.head(g.screen_stock_count)
+
+
+# 盘中处理
+def handle_data(context, data):
+    buy_stocks = get_trade_stocks(context, data)
+    log.info("buy_stocks:%s" % buy_stocks)
+    trade(context, buy_stocks)
+
+
+# 交易函数
+def trade(context, buy_stocks):
+    # 卖出
+    for stock in context.portfolio.positions:
+        if stock not in buy_stocks:
+            order_target_value(stock, 0)
+            log.info("sell:%s" % stock)
+    # 买入
+    position_list = [position.sid for position in context.portfolio.positions.values()
+                     if position.amount != 0]
+    position_count = len(position_list)
+    if g.buy_stock_count > position_count:
+        value = context.portfolio.cash / (g.buy_stock_count - position_count)
+        for stock in buy_stocks:
+            if stock not in context.portfolio.positions:
+                order_target_value(stock, value)
+
+
+# 获取买入股票池（涨停股不参与换仓）
+def get_trade_stocks(context, data):
+    # 获取持仓中涨停的标的
+    hold_up_limit_stock = [stock.replace("XSHG", "SS").replace("XSHE", "SZ") for stock in g.pre_position_list if check_limit(stock)[stock] == 1]
+    df = g.df
+    if df.empty:
+        return hold_up_limit_stock
+    df["code"] = df.index
+    # 计算当时最新的流通市值（昨日的流通股本*最新价）
+    df["curr_float_value"] = df.apply(lambda x: x["a_floats"] * data[x["code"]].price, axis=1)
+    df = df[df["curr_float_value"] != 0]
+    # 获取股票标的（按流通市值从小到大排序）        
+    stocks = df.sort_values(by="curr_float_value").index.tolist()
+    # 计算本次拟买入的数量（最大持仓量-持仓中涨停的数量（因为涨停股不卖））
+    count = g.buy_stock_count - len(hold_up_limit_stock)
+    check_out_lists = stocks[:count]
+    check_out_lists = check_out_lists + hold_up_limit_stock
+    return check_out_lists
+```
+
+
+
+## 协调配对策略
+
+```python
+"""
+策略名称：
+协整配对策略
+注意事项：
+策略中调用的order_target、order_target_value接口的使用有场景限制，回测可以正常使用，交易谨慎使用。
+回测场景下撮合是引擎计算的，因此成交之后持仓信息的更新是瞬时的，但交易场景下信息的更新依赖于柜台数据
+的返回，无法做到瞬时同步，可能造成重复下单。详细原因请看帮助文档。
+"""
+import numpy as np
+
+
+# 初始化函数，设定基准等等
+def initialize(context):
+    set_params()
+    set_variables()
+    set_backtest()
+
+
+# ---代码块1. 设置参数
+def set_params():
+    # 股票1
+    g.security1 = '601398.SS'
+    # 股票2
+    g.security2 = '601988.SS'
+    # 基准
+    g.benchmark = '601988.SS'
+    # 回归系数
+    g.regression_ratio = 0.9938
+    # 股票1默认仓位
+    g.p = 0.5
+    # 股票2默认仓位
+    g.q = 0.5
+    # 算z-score天数
+    g.test_days = 120
+    # 
+    g.days_count = 0
+    # 
+    g.benchmarkStart = 0
+    #
+    g.portfolioStart = 0
+
+
+# ---代码块2. 设置变量
+def set_variables():
+    # 现在状态
+    g.state = 'empty'
+
+
+# ---代码块3. 设置回测
+def set_backtest():
+    # 设置基准
+    set_benchmark(g.benchmark)
+
+
+def before_trading_start(context, data):
+    current_date = context.blotter.current_dt.strftime('%Y-%m-%d')
+    # 2006-11-01前回测由于数据不足，不执行。
+    if current_date < '2006-11-01':
+        g.trade_flag = False
+    else:
+        g.trade_flag = True
+
+
+# 每个单位时间(如果按天回测,则每天调用一次,如果按分钟,则每分钟调用一次)调用一次
+def handle_data(context, data):
+    if not g.trade_flag:
+        return
+    g.days_count += 1
+    log.info('day:' + str(g.days_count))
+    # z值检验流程
+    # 获取两支股票历史价格
+    prices1 = get_history(g.test_days, '1d', 'close', g.security1, is_dict=True)[g.security1]['close']
+    prices2 = get_history(g.test_days, '1d', 'close', g.security2, is_dict=True)[g.security2]['close']
+
+    # 根据回归比例算它们的平稳序列 a.X-Y,
+    stable_series = g.regression_ratio * prices1 - prices2
+    # 算均值
+    series_mean = np.mean(stable_series)
+    # 算标准差
+    sigma = np.std(stable_series)
+    # 算序列现值离均值差距多少
+    diff = stable_series[-1] - series_mean
+    # 返回z值
+    z_score = diff / sigma
+    # log.info('z_score='+str(z_score))
+    new_state = get_signal(z_score)
+    # log.info(new_state)
+    # 调仓
+    change_positions(new_state, context)
+
+
+# ---代码块5.获取信号
+# 返回新的状态，是一个string
+def get_signal(z_score):
+    if z_score > 1:
+        # 状态为全仓第二支
+        return 'buy2'
+    # 如果小于负标准差
+    if z_score < -1:
+        # 状态为全仓第一支
+        return 'buy1'
+    # 如果在正负标准差之间
+    if -1 <= z_score <= 1:
+        # 如果差大于0
+        if z_score >= 0:
+            # 在均值上面
+            return 'side1'
+        # 反之
+        else:
+            # 在均值下面
+            return 'side2'
+
+
+# ---代码块6.根据信号调换仓位
+# 输入是目标状态，输入为一个string
+def change_positions(new_state, context):
+    # 总值产价值
+    total_value = context.portfolio.portfolio_value
+    # 如果新状态是全仓股票1
+    if new_state == 'buy1':
+        # 全卖股票2
+        order_target(g.security2, 0)
+        # 全买股票1
+        order_value(g.security1, total_value)
+        # 旧状态更改
+        g.state = 'buy1'
+    # 如果新状态是全仓股票2
+    if new_state == 'buy2':
+        # 全卖股票1
+        order_target(g.security1, 0)
+        # 全买股票2
+        order_value(g.security2, total_value)
+        # 旧状态更改
+        g.state = 'buy2'
+    # 如果处于全仓一股票状态，但是z-score交叉0点
+    if (g.state == 'buy1' and new_state == 'side1') or (g.state == 'buy2' and new_state == 'side2'):
+        # 按照p,q值将股票仓位调整为默认值
+        order_target_value(g.security1, g.p * total_value)
+        order_target_value(g.security2, g.q * total_value)
+        # 代码里重复两遍因为要先卖后买，而我们没有特地确定哪个先哪个后
+        order_target_value(g.security1, g.p * total_value)
+        order_target_value(g.security2, g.q * total_value)
+        # 状态改为‘平’
+        g.state = 'even'
+```
+
+
+
+## 阳线买入策略
+
+```python
+"""
+策略名称：
+阳线策略
+注意事项：
+策略中调用的order_target、order_target_value接口的使用有场景限制，回测可以正常使用，交易谨慎使用。
+回测场景下撮合是引擎计算的，因此成交之后持仓信息的更新是瞬时的，但交易场景下信息的更新依赖于柜台数据
+的返回，无法做到瞬时同步，可能造成重复下单。详细原因请看帮助文档。
+"""
+import numpy as np
+from decimal import Decimal
+
+
+def initialize(context):
+    if is_trade():
+        log.info('-----trade-------')
+    else:
+        set_fixed_slippage(0.0)
+        set_slippage(slippage=0.01)
+        set_limit_mode('UNLIMITED')
+    g.before_start = False
+    # 持仓数量
+    g.hold_num = 10
+
+
+def before_trading_start(context, data):
+    g.current_date = context.blotter.current_dt.strftime("%Y%m%d")
+    # 持仓股昨日最低价容器
+    g.holds_pre_low_price = {}
+    # 今日开盘价容器
+    g.open_price_info = {}
+    # 昨日持仓股
+    g.position_list = []
+    # 获取全市场股票，选最近10个交易日K线，判断个股形态：最近的一个阴K线之后没有阳线结构，符合形态且当天没有停牌的就加入股票池
+    g.stock_list = get_Ashares()
+
+    his_data_info = get_history(10, frequency='1d', field=['open', 'close', 'volume'],
+                                security_list=g.stock_list, fq=None, include=False, is_dict=True)
+    halt_status = get_stock_status(g.stock_list, 'HALT')
+    g.buy_stocks = []
+    for stock in g.stock_list.copy():
+        # 停牌的过滤
+        if halt_status[stock]:
+            continue
+        his_data = his_data_info[stock]
+        his_data = np.array(list(filter(volume_filter, his_data)))
+        if len(his_data) < 2:
+            continue
+        yinx_flag = False
+        yangx_flag = False
+        is_true = False
+        for stock_data in reversed(his_data):
+            if stock_data['close'] < stock_data['open']:
+                yinx_flag = True
+            if stock_data['close'] > stock_data['open']:
+                yangx_flag = True
+            if yinx_flag and not yangx_flag:
+                is_true = True
+                break
+            if not yinx_flag and yangx_flag:
+                is_true = False
+                break
+        if is_true:
+            g.buy_stocks.append(stock)
+    g.before_start = True
+    g.first_handledata = False
+    total_value = context.portfolio.portfolio_value
+    g.cash = total_value / g.hold_num
+
+    # 对持仓进行数据载入
+    g.position_list = position_last_close_init(context)
+    log.info(('盘前查询持仓股:', g.position_list))
+    log.info(len(g.position_list))
+    # 判断持仓股是否停牌，停牌的标的当日不做交易判断
+    halt_status = get_stock_status(g.position_list, 'HALT')
+    pre_low_data = get_history(1, '1d', 'low', security_list=g.position_list, fq='dypre', is_dict=True)
+    for stock in g.position_list.copy():
+        # 停牌的过滤
+        if halt_status[stock]:
+            g.position_list.remove(stock)
+            continue
+        # 非停牌持仓股获取昨日最低价
+        g.holds_pre_low_price[stock] = pre_low_data[stock]['low'][0]
+
+
+def handle_data(context, data):
+    # 确保盘前处理已完成
+    if not g.before_start:
+        return
+    g.K_num = get_current_kline_count()
+    # 第一分钟处理
+    if not g.first_handledata:
+        # 回测场景持仓股及拟买股票池赋值开盘价
+        if not is_trade():
+            for stock in g.buy_stocks:
+                g.open_price_info[stock] = data[stock].open
+            for stock in g.position_list:
+                g.open_price_info[stock] = data[stock].open
+        g.first_handledata = True
+
+    # 14:45之前持仓股如果符合最新价小于昨日最低价条件清仓
+    if g.K_num < 225:
+        if is_trade():
+            for stock in g.position_list.copy():
+                snapshot = get_snapshot(stock)
+                if snapshot[stock]['last_px'] < g.holds_pre_low_price[stock]:
+                    order_target(stock, 0)
+                    g.position_list.remove(stock)
+        else:
+            for stock in g.position_list.copy():
+                if data[stock].close < g.holds_pre_low_price[stock]:
+                    order_target(stock, 0)
+                    g.position_list.remove(stock)
+
+    # 14:45分对非涨停状态的个股进行清仓
+    if g.K_num == 225:
+        for stock in g.position_list.copy():
+            stock_flag = check_limit(stock)[stock]
+            if stock_flag != 1:
+                order_target(stock, 0)
+                g.position_list.remove(stock)
+
+    # 14:50分进行买入,校验当日实体阳线K线
+    if g.K_num == 230:
+        hold_list = position_last_close_init(context)
+        if is_trade():
+            count = 0
+            for stock in g.buy_stocks:
+                if count + len(hold_list) < g.hold_num and stock not in hold_list:
+                    snapshot = get_snapshot(stock)
+                    if snapshot[stock]['last_px'] > g.open_price_info[stock]:
+                        order_target_value(stock, g.cash)
+                        count += 1
+        else:
+            count = 0
+            for stock in g.buy_stocks:
+                if count + len(hold_list) < g.hold_num and stock not in hold_list:
+                    if data[stock].close > g.open_price_info[stock]:
+                        order_target_value(stock, g.cash)
+                        count += 1
+
+
+# 生成持仓股票列表
+def position_last_close_init(context):
+    position_last_list = []
+    for stock in context.portfolio.positions:
+        if context.portfolio.positions[stock].amount != 0:
+            position_last_list.append(stock)
+    return position_last_list
+
+
+# 保留小数点两位
+def replace(x):
+    x = Decimal(x)
+    x = float(str(round(x, 2)))
+    return x
+
+
+# 按成交量筛选停牌的数据
+def volume_filter(data):
+    if data['volume'] > 0:
+        return data
+```
+
+
+
+## 指数增强策略
+
+```python
+"""
+策略名称：
+指数增强日线交易策略
+策略流程：
+盘前：
+1、将沪深300成分股中st、停牌、退市的股票过滤得到股票池
+2、示例用roe作为单因子选出排名第一档的股票作为目标股票池
+盘中：
+1、财报调仓日或者固定间隔调仓日通过线性规划的方法进行调仓，以图实现增强效果
+注意事项：
+策略中调用的order_target、order_target_value接口的使用有场景限制，回测可以正常使用，交易谨慎使用。
+回测场景下撮合是引擎计算的，因此成交之后持仓信息的更新是瞬时的，但交易场景下信息的更新依赖于柜台数据
+的返回，无法做到瞬时同步，可能造成重复下单。详细原因请看帮助文档。
+"""
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+import math
+from decimal import Decimal
+import datetime
+from datetime import date as justdate
+from scipy.optimize import minimize
+
+
+# 初始化
+def initialize(context):
+    g.factor = 'roe'
+    g.factor_params_info = {'roe': ['profit_ability', 'roe', False],  # 净资产收益率,最后布尔值为排序方式
+                            'operating_revenue_grow': ['growth_ability', 'operating_revenue_grow_rate', False],  # 营收增速
+                            'net_profit_grow': ['growth_ability', 'np_parent_company_cut_yoy', False],  # 扣非净利润增速
+                            }
+    set_params()  # 设置策参数
+    set_variables()  # 设置中间变量
+    is_trade_flag = is_trade()
+    if is_trade_flag:
+        pass
+    else:
+        set_backtest()  # 设置回测条件
+
+
+# 设置策参数
+def set_params():
+    g.percent = 0.10
+    g.est_interval = 80  # 记录优化区间，使用二次规划根据这个区间最优化权重
+    g.lamda = 0
+    g.hold_days = 60
+    g.max_hold_num = 20  # 最大持仓的股票
+    g.run_days = 0
+    g.benchmark = '000300.SS'
+    # 财报季度调仓所依据的指定日期
+    g.finance_update_date_list = ['0401', '0801', '1001']
+
+
+# 设置中间变量
+def set_variables():
+    g.init_screen = True
+    g.is_update_stocks = False
+
+
+# 设置回测条件
+def set_backtest():
+    set_limit_mode('UNLIMITED')  # 回测撮合不限制成交量
+
+
+# 盘前处理
+def before_trading_start(context, data):
+    g.current_date = context.blotter.current_dt.strftime('%Y%m%d')
+    # 2008-01-01前回测由于数据不足，不执行。
+    if g.current_date < '20080101':
+        g.trade_flag = False
+    else:
+        g.trade_flag = True
+    if not g.trade_flag:
+        return
+    g.everyStock = 0
+    if is_pub_date(g.current_date):  # 财报调仓日
+        g.stocks = create_stocks()
+        g.is_update_stocks = True
+    elif g.init_screen:
+        '''初始化一个组合，这一小段代码只会用一次'''
+        g.stocks = create_stocks()
+        g.is_update_stocks = True
+        g.init_screen = False  # 将Flag置为False，保证下次不再运行
+
+
+# 每天交易时要做的事情
+def handle_data(context, data):
+    if not g.trade_flag:
+        return
+    # 如果到公告日更新了调仓
+    if g.is_update_stocks:
+        stock_sort = g.stocks
+        log.info('初始日或调仓日股票池')
+        log.info(stock_sort)
+        if not stock_sort:
+            return
+        previous_date = get_trading_day(-1)
+        # 通过二次规划确定权重
+        weight = get_weights(stock_sort, previous_date)
+        stock_weight = dict(zip(stock_sort, weight))
+        stocks = stock_sort
+        current_hold_set = set(context.portfolio.positions.keys())
+        if set(stocks) != current_hold_set:
+            need_buy = set(stocks).difference(current_hold_set)
+            need_sell = current_hold_set.difference(stocks)
+            current_stocks = set(stocks).difference(need_buy)
+            try:
+                for stock in need_sell:
+                    order_target(stock, 0)
+                for stock in need_buy:
+                    order_value(stock, context.portfolio.portfolio_value * stock_weight[stock])
+                for stock in current_stocks:
+                    order_target_value(stock, context.portfolio.portfolio_value * stock_weight[stock])
+            except:
+                pass
+        g.is_update_stocks = False
+        g.run_days = 0
+
+    elif g.run_days % g.hold_days == 0:
+        stocks = g.stocks
+        log.info('非调仓日股票池')
+        log.info(stocks)
+        if not stocks:
+            return
+        '''这里的权重通过二次规划确定'''
+        weight = get_weights(stocks, context.previous_date)
+        stock_weight = dict(zip(stocks, weight))
+        try:
+            for stock in stocks:
+                order_target_value(stock, context.portfolio.portfolio_value * stock_weight[stock])
+        except:
+            pass
+    if context.portfolio.cash > 0:
+        # 如果可用资金大于0，说明没有全仓，就是撮合单的时候出问题，所以需要重新买入，这时候重新全仓买入几个ETF
+        log.info('尝试把剩余资金用完，买入ETF')
+        cash = context.portfolio.cash
+        order_value('510300.SS', cash / 10 * 4)
+        order_value('510330.SS', cash / 10 * 3)
+        order_value('510500.SS', cash / 10 * 3)
+    g.run_days += 1
+
+
+# 建立股票池
+def create_stocks():
+    g.all_stocks = get_index_stocks('000300.XBHS', g.current_date)
+    for stock in g.all_stocks.copy():
+        if stock[:3] == '688':
+            g.all_stocks.remove(stock)
+    # 将ST、停牌、退市三种状态的股票剔除当日的股票池
+    g.all_stocks = filter_stock_by_status(g.all_stocks, filter_type=["ST", "HALT", "DELISTING"], query_date=None)
+    return get_stocks(g.all_stocks, str(get_trading_day(-1)), g.factor)
+
+
+# 获取拟持仓股票池
+def get_stocks(stocks, date, factor):
+    sort_type = g.factor_params_info[factor][-1]
+    df = get_factor_values(stocks, factor, date, g.factor_params_info)
+    df.dropna(inplace=True)
+    if df.empty:
+        print('%s数据获取失败，选股失败' % factor)
+        return list()
+    # 3倍标准差去极值
+    df = winsorize(df, factor, std=3, have_negative=True)
+    # z标准化
+    df = standardize(df, factor, ty=2)
+    # 市值中性化
+    market_cap_df = get_fundamentals(stocks, 'valuation', fields='total_value', date=date)
+    market_cap_df = market_cap_df[['total_value']]
+    market_cap_df.dropna(inplace=True)
+    if market_cap_df.empty:
+        print('市值数据获取失败，选股失败')
+        return list()
+    df = neutralization(df, factor, market_cap_df)
+    df = df.sort_values(by=factor, ascending=sort_type)
+    return list(df.head(int(len(df) * g.percent)).index)
+
+
+# 获取因子值
+def get_factor_values(stock_list, factor, date, factor_params_info):
+    """
+    获取因子值方法
+    入参：
+    1、股票池：stock_list
+    2、因子名称：factor
+    3、计算日期：date
+    4、因子数据获取需要维护的信息（因子名称、表名、字段名）
+    """
+    data = get_fundamentals(stock_list, table=factor_params_info[factor][0], fields=factor_params_info[factor][1],
+                            date=date, is_dataframe=True)
+    factor_info = {}
+    for stock in stock_list.copy():
+        if stock not in data.index:
+            continue
+        factor_info[stock] = data.loc[stock, factor_params_info[factor][1]]
+    if factor_info == {}:
+        return pd.DataFrame()
+    factor_df = pd.DataFrame.from_dict(factor_info, orient='index')
+    factor_df.columns = [factor_params_info[factor][1]]
+    return factor_df
+
+
+# 使用二次规划确定权重  
+def get_weights(stocks, date):
+    date = date.strftime('%Y-%m-%d')
+    start_date = get_trading_day(-(g.est_interval + 1)).strftime('%Y-%m-%d')
+    price_data = get_price(stocks, start_date=start_date, end_date=date, frequency='daily',
+                           fields=['close'], is_dict=True)
+    
+    close_df = pd.DataFrame()
+    for stock_code, stock_data in price_data.items():
+        date_info = pd.to_datetime(stock_data['datetime'], format='%Y%m%d')
+        close_info = stock_data['close']
+        close_df[stock_code] = pd.Series(close_info, index=date_info)
+    close_df.sort_index(inplace=True)    
+
+    code_list = list(close_df.columns)
+    df_list = []
+    for stock in code_list:
+        df = close_df[[stock]]
+        df['change'] = 0 
+        df['change'] = df[stock] / df[stock].shift(1) - 1
+        df[stock] = df['change']
+        df = df[[stock]]
+        df.fillna(0, inplace=True)
+        df_list.append(df)
+
+    result = pd.concat(df_list, axis=1)
+    index_price = get_price(g.benchmark, start_date=start_date, end_date=date, frequency='daily',
+                            fields=['close'], is_dict=False)
+    index_r = index_price.pct_change()
+    index_r.fillna(0, inplace=True)
+    weight = calculate_weight(np.array(result), np.array(index_r))
+    return weight
+
+
+def calculate_weight(train_returns, target_returns):
+    length = len(train_returns.T)
+
+    # 定义二次线性规划目标函数
+    def objective(weights):
+        return np.sum((np.dot(train_returns, weights) - target_returns) ** 2)
+
+    # 定义约束条件
+    constraints = [{'type': 'eq', 'fun': lambda weights: np.sum(weights) - 1},
+                   {'type': 'ineq', 'fun': lambda weights: 0.2 - np.max(weights)}
+                   ]
+    # 定义权重的取值范围（可以设置最小权重和最大权重区间）
+    min_weight = (1 / length) * 0.2  # 最小权重
+    max_weight = (1 / length) * 5  # 最大权重
+    bounds = [(min_weight, max_weight)] * train_returns.shape[1]
+    # 初始化权重
+    initial_weights = np.ones(train_returns.shape[1]) / train_returns.shape[1]
+    # 最小化目标函数，求解权重
+    result = minimize(objective, initial_weights, constraints=constraints, bounds=bounds)
+    # 输出结果
+    test_weights = result.x
+    # print("测试集投资权重：", test_weights)
+    return test_weights
+
+
+# 保留小数点两位
+def replace(x):
+    x = Decimal(x)
+    x = float(str(round(x, 2)))
+    return x
+
+
+# 去极值函数（3倍标准差去极值）
+def winsorize(factor_data, factor, std=3, have_negative=True):
+    """
+    去极值函数
+    factor:以股票code为index，因子值为value的Series
+    std为几倍的标准差，have_negative 为布尔值，是否包括负值
+    输出Series
+    """
+    r = factor_data[factor]
+    if not have_negative:
+        r = r[r >= 0]
+    # 取极值
+    edge_up = r.mean() + std * r.std()
+    edge_low = r.mean() - std * r.std()
+    r[r > edge_up] = edge_up
+    r[r < edge_low] = edge_low
+    r = pd.DataFrame(r)
+    return r
+
+
+# z－score标准化函数：
+def standardize(factor_data, factor, ty=2):
+    """
+    s为Series数据
+    ty为标准化类型:1 MinMax,2 Standard,3 maxabs
+    """
+    temp = factor_data[factor]
+    re = 0
+    if int(ty) == 1:
+        re = (temp - temp.min()) / (temp.max() - temp.min())
+    elif ty == 2:
+        re = (temp - temp.mean()) / temp.std()
+    elif ty == 3:
+        re = temp / 10 ** np.ceil(np.log10(temp.abs().max()))
+    return pd.DataFrame(re)
+
+
+# 市值中性化函数
+def neutralization(data_factor, factor, data_market_cap):
+    data_market_cap['total_value2'] = 0
+    data_market_cap['total_value2'] = data_market_cap['total_value'].apply(lambda a: math.log(a))
+    df = pd.concat([data_factor, data_market_cap], axis=1, join='inner')
+    y = df[factor]
+    x = df['total_value2']
+    result = sm.OLS(y, x).fit()
+    result = pd.DataFrame(result.resid)
+    result.columns = [factor]
+    return result
+
+
+# 判断当天时间是不是出财报的下一天时间
+def is_pub_date(current_date):
+    cur_year = current_date[:4]
+    trade_dates = []
+    # 按季度选股，在4.30、8.31、10.31三个时间日重新根据财务报表选择股票
+    for date in g.finance_update_date_list:
+        trade_dates.append(get_trading_day_by_date(cur_year+date, day=0))
+    if current_date in trade_dates:
+        return True
+    return False
+```
 
